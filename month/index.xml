@@ -39,10 +39,10 @@ Get 2D instance segmentation of the current camera image using YOLACT. Update th
           <pubDate>Wed, 10 Jun 2020 00:00:00 +0000</pubDate>
           
           <guid>/projects/mot/</guid>
-          <description>Implemented vanilla Tracktor with Faster-RCNN using PyTorch. Added a basic motion model and also a reidentificaiton network as the paper suggested for Tracktor++ . Developed using the MOT17 benchmark and achieved following results on the training set.
+          <description>Implemented vanilla Tracktor with Faster-RCNN using PyTorch. Added a basic motion model and also a reidentificaiton network as the paper suggested for Tracktor++ . Developed using the MOT16 benchmark and achieved following results on the training set.
 My results
 State of the art Tracktor++ results
-Source code can be found [Link here]</description>
+Source code can be found here</description>
         </item>
             
         <item>
