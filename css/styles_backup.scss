@@ -105,7 +105,7 @@ a {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: FreeSerif, serif;
+    font-family: FreeSans, sans-serif;
     font-weight: bold;
     font-style: normal;
     color: $heading-gray;
@@ -280,7 +280,7 @@ nav li {
 nav a {
     color: $text-color;
     padding: .25em .63em;
-    font-family: FreeSerif, serif;
+    font-family: FreeSans, sans-serif;
     font-size: 1.2em;
     display: block;
 }
@@ -381,7 +381,7 @@ nav li:hover {
 
     a {
         color: $heading-gray;
-        font-family: FreeSerif, serif;
+        font-family: FreeSans, sans-serif;
     }
 }
 
@@ -396,7 +396,7 @@ nav li:hover {
 }
 
 em.taxonomy-emph {
-    font-family: FreeSerif, serif;
+    font-family: FreeSans, sans-serif;
     font-style: oblique;
 }
 
@@ -436,7 +436,7 @@ em.taxonomy-emph {
 
 .pagination {
     list-style-type: none;
-    font-family: FreeSerif, serif;
+    font-family: FreeSans, sans-serif;
     display: flex;
     justify-content: center;
     margin: 1em;
@@ -500,7 +500,7 @@ em.taxonomy-emph {
     }
 
     ul, ol {
-        font-family: FreeSerif, serif;
+        font-family: FreeSans, sans-serif;
         margin-top: 0;
     }
     li {
@@ -513,14 +513,14 @@ em.taxonomy-emph {
     margin: 0 0 1em 0;
 
     .what {
-        font-family: FreeSerif, serif;
+        font-family: FreeSans, serif;
         text-align: left;
         font-size: 1.0em;
         color: $text-color;
     }
 
     .resume-entry-data {
-        font-family: FreeSerif, serif;
+        font-family: FreeSans, serif;
         text-align: left;
         font-size: 0.8em;
         color: $very-light-text;
@@ -542,7 +542,7 @@ em.taxonomy-emph {
 }
 
 p.resume-subcategory {
-    font-family: FreeSerif, serif;
+    font-family: FreeSans, sans-serif;
     font-size: 1.4em;
     text-decoration: underline;
     padding: 0 0 .3em 0;
@@ -576,7 +576,7 @@ p.resume-subcategory {
                 white-space: nowrap;
                 color: #3f444d;
                 font-size: 1em;
-                font-family: FreeSerif, serif;
+                font-family: FreeSans, sans-serif;
 
                 i {
                     font-size: 2em;
@@ -611,7 +611,7 @@ p.resume-subcategory {
 
 
     a {
-        font-family: FreeSerif, serif;
+        font-family: FreeSans, sans-serif;
         font-weight: bold;
         font-size: 1em;
         color: $contactlinks-text-color;
