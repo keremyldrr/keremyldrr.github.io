@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Kerem Yıldırır - 3D Instance Segmentation </title>
+    <title>Kerem Yıldırır - 3D Real-Time Instance Segmentation with LDLS-YOLACT </title>
     <link rel="stylesheet" type="text/css" href="/css/fonts.css">
     <link rel="stylesheet" type="text/css" href="/css/fontawesome.css">
     <link rel="stylesheet" type="text/css" href="/css/styles.css">
@@ -40,41 +40,38 @@
     <main>
         <article>
             
-            <h1 class="page-title blog">3D Instance Segmentation</h1>
+            <h1 class="page-title blog">3D Real-Time Instance Segmentation with LDLS-YOLACT</h1>
             
-                <p class="blog-post-info">Posted: <time>2020-06-04</time>
+                <p class="blog-post-info">Posted: <time>2020-07-04</time>
                 
 
 
 </p>
 
                 <div class="blog-post-content">
-                <h1 id="autonomous-driving-praktikum">Autonomous Driving Praktikum</h1>
-<p>3D Instance Segmentation of the point cloud using 2D detections provided from Mask R-CNN
-Does not require any annotated 3D data!
-Original implementation is not suitable for real time due to slow inference speed of Mask R-CNN</p>
-<p>2D detections
+                <p>In this project I&rsquo;ve developed a 3D object detection and tracking pipeline for autonomous driving with Python and ROS without any labeled 3D data. Our hardware were only  a Livox mid-100 lidar sensor and a RealSense camera. After calibrating the sensors, the pipeline is as follows:</p>
+<ul>
+<li>Get 2D instance segmentation of the current camera image using YOLACT.</li>
+<li>Update the id numbers of the detected entitites using SORT</li>
+<li>Project the masks into 3D point cloud using LDLS</li>
+<li>Compute the 3D bounding boxes for the detected areas.</li>
+</ul>
 
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
   <iframe src="https://www.youtube.com/embed/h26dd4iHiVg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
 </div>
-</p>
-<p>[TODO] LDLS picture</p>
-<p>We solve the performance issue of LDLS by swapping Mask R-CNN with YOLACT, a faster instance segmentation model.
-For any given image and LiDAR data pair, we first perform 2D Instance Object Segmentation using YOLACT
-We then apply LDLS to label the point cloud data with the detected classes in 2D.</p>
-<p>SORT</p>
+
 
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
   <iframe src="https://www.youtube.com/embed/uLb_L60hxHc" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
 </div>
 
-<p>Combining everything</p>
 
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
   <iframe src="https://www.youtube.com/embed/FFxR8pmEyY0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
 </div>
 
+<p>Source code can be found  <a href="%5B%22https://github.com/keremyldrr/3D-Instance-Segmentation-with-LDLS-YOLACT%22%5D">here </a>page. For the implementation with ROS, please get in touch.</p>
 
                 </div>
                 

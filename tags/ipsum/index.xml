@@ -16,7 +16,7 @@
         
 
         
-        <lastBuildDate>Thu, 04 Jun 2020 23:21:09 +0200</lastBuildDate>
+        <lastBuildDate>Tue, 04 Sep 2018 23:21:09 +0200</lastBuildDate>
         
 
         
@@ -26,65 +26,62 @@
         
             
         <item>
-          <title>Divergence-Free Shape Correspondence with Time Dependent Vector Fields</title>
-          <link>/projects/idp/</link>
-          <pubDate>Sun, 05 Jul 2020 00:00:00 +0000</pubDate>
+          <title>3D Real-Time Instance Segmentation with LDLS-YOLACT</title>
+          <link>/projects/3d-segmentation/</link>
+          <pubDate>Sat, 04 Jul 2020 23:30:14 +0200</pubDate>
           
-          <guid>/projects/idp/</guid>
-          <description>IDP [TODO] funky videos of intermediate results</description>
+          <guid>/projects/3d-segmentation/</guid>
+          <description>In this project I’ve developed a 3D object detection and tracking pipeline for autonomous driving with Python and ROS without any labeled 3D data. Our hardware were only a Livox mid-100 lidar sensor and a RealSense camera. After calibrating the sensors, the pipeline is as follows:
+Get 2D instance segmentation of the current camera image using YOLACT. Update the id numbers of the detected entitites using SORT Project the masks into 3D point cloud using LDLS Compute the 3D bounding boxes for the detected areas.</description>
         </item>
             
         <item>
           <title>Multiple Object Tracking with Tracktor</title>
           <link>/projects/mot/</link>
-          <pubDate>Fri, 05 Jun 2020 16:09:23 +0200</pubDate>
+          <pubDate>Wed, 10 Jun 2020 00:00:00 +0000</pubDate>
           
           <guid>/projects/mot/</guid>
-          <description>Multiple Object Tracking Challenge by TUM. Implemented vanilla Tracktor with Faster R-CNN and basic motion and reidentificaiton model. [TODO] video and source code</description>
+          <description>Implemented vanilla Tracktor with Faster-RCNN using PyTorch. Added a basic motion model and also a reidentificaiton network as the paper suggested for Tracktor++ . Developed using the MOT17 benchmark and achieved following results on the training set.
+My results
+State of the art Tracktor++ results
+Source code can be found [Link here]</description>
         </item>
             
         <item>
-          <title>3D Instance Segmentation</title>
-          <link>/projects/3d-segmentation/</link>
-          <pubDate>Thu, 04 Jun 2020 23:30:14 +0200</pubDate>
+          <title>Divergence-Free Shape Correspondence with Time Dependent Vector Fields</title>
+          <link>/projects/idp/</link>
+          <pubDate>Wed, 20 Nov 2019 00:00:00 +0000</pubDate>
           
-          <guid>/projects/3d-segmentation/</guid>
-          <description>Autonomous Driving Praktikum 3D Instance Segmentation of the point cloud using 2D detections provided from Mask R-CNN Does not require any annotated 3D data! Original implementation is not suitable for real time due to slow inference speed of Mask R-CNN
-2D detections   [TODO] LDLS picture
-We solve the performance issue of LDLS by swapping Mask R-CNN with YOLACT, a faster instance segmentation model. For any given image and LiDAR data pair, we first perform 2D Instance Object Segmentation using YOLACT We then apply LDLS to label the point cloud data with the detected classes in 2D.</description>
+          <guid>/projects/idp/</guid>
+          <description>We are extending the paper “Divergence-Free Shape Correspondence by Deformation” and representing a motion sequence as a time dependent vector field. We solve correspondence and matching problems for the whole sequence during the optimization. Some of the current results can be seen below. Blue is shape is our estimated deformation and orange is the ground truth in the Dynamic FAUST dataset.
+Source code will be made available when the project is completed.</description>
         </item>
             
         <item>
           <title>One Table to Count Them All: Parallel Frequency Estimation on Single-Board Computers</title>
           <link>/projects/sketch/</link>
-          <pubDate>Thu, 04 Jun 2020 23:30:14 +0200</pubDate>
+          <pubDate>Sat, 02 Mar 2019 23:30:14 +0200</pubDate>
           
           <guid>/projects/sketch/</guid>
-          <description>Id Modi Id modi explicabo non accusantium accusantium. Voluptates laborum est exercitationem odit voluptate dicta laborum nemo. Dolorum et aliquam qui dolorem voluptates ducimus voluptatibus. Quia sunt molestiae id ut. Necessitatibus itaque sed unde sit repellendus sit. Error pariatur deserunt dignissimos saepe cupiditate beatae.
-Nemo animi
-Illum quae laudantium quia vel facere aliquid earum. Inventore culpa perspiciatis et veniam et amet distinctio. Facilis expedita doloremque voluptates nihil et sint commodi et.</description>
-        </item>
-            
-        <item>
-          <title>Plant  Identification with Deep Learning Ensembles</title>
-          <link>/projects/plant_id/</link>
-          <pubDate>Thu, 04 Jun 2020 23:21:09 +0200</pubDate>
-          
-          <guid>/projects/plant_id/</guid>
-          <description>Tempora Maxime Illo quod est aut aperiam ullam. Eum aliquam vel velit hic dolores sunt molestiae saepe. Est et cupiditate est saepe.
-Qui quo beatae minima. Tempora maxime facere praesentium officiis maiores quia. Quia placeat nihil sint aperiam autem quia recusandae et. In quas nulla cum fuga. Dolores voluptas quia facere atque omnis rerum corrupti repellendus.
-Facere quod Voluptatibus neque iure aut doloremque excepturi. Quidem aut unde magni. Harum qui molestiae ut itaque labore voluptas.</description>
+          <description>Abstract: Sketches are probabilistic data structures that can provide approximate results within mathematically proven error bounds while using orders of magnitude less memory than traditional approaches. They are tailored for streaming data analysis on architectures even with limited memory such as single-board computers that are widely exploited for IoT and edge computing. Since these devices offer multiple cores, with efficient parallel sketching schemes, they are able to manage high volumes of data streams.</description>
         </item>
             
         <item>
           <title>Plant Disease Identification</title>
           <link>/projects/plant_disease/</link>
-          <pubDate>Thu, 04 Jun 2020 23:21:09 +0200</pubDate>
+          <pubDate>Tue, 22 Jan 2019 23:21:09 +0200</pubDate>
           
           <guid>/projects/plant_disease/</guid>
-          <description>Tempora Maxime Illo quod est aut aperiam ullam. Eum aliquam vel velit hic dolores sunt molestiae saepe. Est et cupiditate est saepe.
-Qui quo beatae minima. Tempora maxime facere praesentium officiis maiores quia. Quia placeat nihil sint aperiam autem quia recusandae et. In quas nulla cum fuga. Dolores voluptas quia facere atque omnis rerum corrupti repellendus.
-Facere quod Voluptatibus neque iure aut doloremque excepturi. Quidem aut unde magni. Harum qui molestiae ut itaque labore voluptas.</description>
+          <description>Abstract Detection of plant diseases via computer vision based systems are being used to identify plant diseases promptly, to prevent the spread of the disease. In this work, we present a system for classifying plant diseases from photographs of the diseased parts of the plant. The system is trained using transfer learning on convolutional neural networks (VGGNet) which are trained to classify 38 plant diseases or 11 disease classes. 95.09% average accuracy was obtained on plant-disease classification using PlantVillage dataset.</description>
+        </item>
+            
+        <item>
+          <title>Plant  Identification with Deep Learning Ensembles</title>
+          <link>/projects/plant_id/</link>
+          <pubDate>Tue, 04 Sep 2018 23:21:09 +0200</pubDate>
+          
+          <guid>/projects/plant_id/</guid>
+          <description>Abstract This work describes the plant identification system that we submitted to the ExpertLifeCLEF plant identification campaign in 2018. We fine-tuned two pre-trained deep learning architectures (SeNet and DensNetwork) using images shared by the CLEF organizers in 2017. Our main runs are 4 ensembles obtained with different weighted combinations of the 4 deep learning architectures. The fifth ensemble is based on deep learning features but uses Error Correcting Output Codes (ECOC) as the ensemble.</description>
         </item>
             
         
