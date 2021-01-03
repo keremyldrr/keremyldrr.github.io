@@ -16,6 +16,8 @@
         
 
         
+        <lastBuildDate>Tue, 04 Sep 2018 23:21:09 +0200</lastBuildDate>
+        
 
         
         <atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
@@ -30,7 +32,7 @@
           
           <guid>/projects/3d-segmentation/</guid>
           <description>In this project I’ve developed a 3D object detection and tracking pipeline for autonomous driving with Python and ROS without any labeled 3D data. Our hardware were only a Livox mid-100 lidar sensor and a RealSense camera. After calibrating the sensors, the pipeline is as follows:
-Get 2D instance segmentation of the current camera image using YOLACT. Update the id numbers of the detected entitites using SORT Project the masks into 3D point cloud using LDLS  sadasd</description>
+Get 2D instance segmentation of the current camera image using YOLACT. Update the id numbers of the detected entitites using SORT Project the masks into 3D point cloud using LDLS Compute the 3D bounding boxes for the detected areas.</description>
         </item>
             
         <item>
@@ -39,7 +41,7 @@ Get 2D instance segmentation of the current camera image using YOLACT. Update th
           <pubDate>Wed, 10 Jun 2020 00:00:00 +0000</pubDate>
           
           <guid>/projects/mot/</guid>
-          <description>Implemented vanilla Tracktor with Faster-RCNN using PyTorch. Added a basic motion model and also a reidentificaiton network as the paper suggested. Developed using the MOT16 benchmark and achieved following results on the training set.
+          <description>Implemented vanilla Tracktor with Faster-RCNN using PyTorch. Added a basic motion model and also a reidentificaiton network as the paper suggested for Tracktor++ . Developed using the MOT16 benchmark and achieved following results on the training set.
 My results
 State of the art Tracktor++ results
 Source code can be found here</description>
@@ -51,7 +53,7 @@ Source code can be found here</description>
           <pubDate>Wed, 20 Nov 2019 00:00:00 +0000</pubDate>
           
           <guid>/projects/idp/</guid>
-          <description>We are extending the paper “Divergence-Free Shape Correspondence by Deformation” and representing a motion sequence as a time dependent vector field. We solve correspondence and matching problems for the whole sequence during the optimization. Some of the current results can be seen below. Blue is our estimated deformation and orange is the ground truth in the Dynamic FAUST dataset.
+          <description>We are extending the paper “Divergence-Free Shape Correspondence by Deformation” and representing a motion sequence as a time dependent vector field. We solve correspondence and matching problems for the whole sequence during the optimization. Some of the current results can be seen below. Blue is shape is our estimated deformation and orange is the ground truth in the Dynamic FAUST dataset.
 Source code will be made available when the project is completed.</description>
         </item>
             
