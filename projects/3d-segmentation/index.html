@@ -51,12 +51,11 @@
                 <div class="blog-post-content">
                 <p>In this project I&rsquo;ve developed a 3D object detection and tracking pipeline for autonomous driving with Python and ROS without any labeled 3D data. Our hardware were only  a Livox mid-100 lidar sensor and a RealSense camera. After calibrating the sensors, the pipeline is as follows:</p>
 <ul>
-<li>Get 2D instance segmentation of the current camera image using <a href="%5Bhttps://arxiv.org/abs/1904.02689%5D"><em>YOLACT</em></a>.</li>
-<li>Update the id numbers of the detected entitites using <a href="%5Bhttps://arxiv.org/abs/1602.00763%5D"><em>SORT</em></a></li>
-<li>Project the masks into 3D point cloud using <a href="%5Bhttps://arxiv.org/abs/1910.13955%5D"><em>LDLS</em></a></li>
+<li>Get 2D instance segmentation of the current camera image using YOLACT.</li>
+<li>Update the id numbers of the detected entitites using SORT</li>
+<li>Project the masks into 3D point cloud using LDLS</li>
+<li>Compute the 3D bounding boxes for the detected areas.</li>
 </ul>
-<p>sadasd</p>
-<!-- raw HTML omitted -->
 
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
   <iframe src="https://www.youtube.com/embed/h26dd4iHiVg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
