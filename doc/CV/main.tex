@@ -1,0 +1,180 @@
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% "ModernCV" CV and Cover Letter
+% LaTeX Template
+% Version 1.1 (9/12/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Xavier Danaux (xdanaux@gmail.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+% Important note:
+% This template requires the moderncv.cls and .sty files to be in the same 
+% directory as this .tex file. These files provide the resume style and themes 
+% used for structuring the document.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[12pt,letterpaper]{moderncv}
+\moderncvstyle{classic}
+\moderncvcolor{black}
+\usepackage{libertine}
+\usepackage[left=1cm,right=1cm,top=1cm,bottom=1cm]{geometry}
+\usepackage{kantlipsum}
+\usepackage{bibentry}
+
+\usepackage[utf8]{inputenc}
+\makeatletter
+\RenewDocumentCommand{\section}{sm}{%
+  \strut\sectionstyle{#2\hfill}%
+  \par\nobreak\addvspace{1ex}\@afterheading
+  }
+
+\RenewDocumentCommand{\subsection}{sm}{
+  \strut\subsectionstyle{#2}{\color{color1}{\subsectionfill}}%
+  \par\nobreak\addvspace{0.5ex}\@afterheading}
+%
+\makeatother
+
+%	NAME AND CONTACT INFORMATION SECTION
+%----------------------------------------------------------------------------------------
+
+\firstname{Kerem} % Your first name
+\familyname{Yıldırır} % Your last name
+
+% All information in this block is optional, comment out any lines you don't need
+%\title{Curriculum Vitae}
+
+%\homepage{staff.org.edu/~jsmith}{staff.org.edu/$\sim$jsmith} % The first argument is %the url for the clickable link, the second argument is the url displayed in the %template - this allows special characters to be displayed such as the tilde in this %example
+%\extrainfo{additional information}
+\photo[70pt][0pt]{prof_pic} % The first bracket is the picture height, the second is %the thickness of the frame around the picture (0pt for no frame)
+\address{}{Munich, Germany}
+\mobile{(+49) 15259375550}
+%\fax{(000) 111 1113}
+\email{kerem.yildirir@tum.de}
+\homepage{keremyldrr.github.io}{keremyldrr.github.io}
+\homepage{github.com/keremyldrr}{GitHub}
+
+%----------------------------------------------------------------------------------------
+\usepackage{xpatch}
+\xpatchcmd{\cventry}{.\strut}{\strut}{}{}
+\begin{document}
+\pagenumbering{gobble}
+
+\makecvtitle % Print the CV title
+
+%----------------------------------------------------------------------------------------
+%	EDUCATION SECTION
+%----------------------------------------------------------------------------------------
+
+\section{Education}
+\cventry{2019--Present}{Technical University of Munich - Department of Informatics,Germany}{}{}{}{M.Sc in Informatics}{} % Arguments not required can be left empty
+
+\cventry{2015--2019}{Sabanci University - Faculty of Engineering and Natural Sciences,Turkey}{}{}{}{Computer Science and Engineering GPA: 3.69/4.0}  % Arguments not required can be left empty
+% \cventry{2011--2015}{Sakip Sabanci Anatolian High School, Turkey}{}{}{}{GPA: 86/100}  % Arguments not required can 
+%----------------------------------------------------------------------------------------
+%	WORK EXPERIENCE SECTION
+%----------------------------------------------------------------------------------------
+% \section{Research Interests}
+% \cvitem{}{3D Object Detection,Image Processing, Parallel Programming, High Performance Computing,Autonomous Driving}
+% %\vspace{0.25cm}
+
+\section{Experience}
+% \vspace{0.25cm}
+
+\cventry{Oct. 2020 - Present}{Working Student}{Forschungs-Neutronenquelle Heinz Maier-Leibnitz}{Technical University of Munich}{}{ Doing high speed image processing with CUDA and C++. Working on segmenting the region of interests (possible neutron locations) using Connected Component Labeling and computing the centers of these regions for neutron imaging.}
+% \vspace{0.25cm}
+\cventry{Jun. 2018 - Aug. 2018}{Research Internship}{Center of Vision,Speech and Signal Processing}{Uni. of Surrey}{Guildford,UK}{Constructed Error Correcting Output Coding (ECOC) matrices with 1000 and 10000 classes using Discriminant ECOC algorithm. Trained  binary classifiers for each matrix column using a 4-layer deep neural network with Keras API ,using  previously extracted features from LifeClef Challenge data set trained with SENET for training. Used Tensorflow and MXNet for Keras backend.}
+% \vspace{0.25cm}
+\cventry{May. 2018 - Jun. 2019}{Undergraduate Research Assistant}{Center of Excellence in Data Analytics}{Sabanci University}{}{Worked as an Undergraduate Research Assistant at VERIM (Centre of Excellence in Data Analytics) during my graduation project period, working on Plant Disease Identification. Additionally gave a seminar on using HPC and Python modules \& frameworks for Deep Learning and participated in Plant Identification contest with 10000 classes.}
+% \vspace{0.25cm}
+
+\cventry{Feb. 2018 - Jan. 2019}{\href{https://www.sabanciuniv.edu/syllabus/?crn=11063&term=201801}{Teaching Assistant}}{CS204 Advanced Programming}{Sabanci University}{}{Lead weekly recitation sessions, reviewed the topics discussed in the class, solved exercises and explained subjects to students.
+}
+% \vspace{0.25cm}
+
+\cventry{Jan. 2018 }{Computer Vision Intern}{}{Vispera Information Technologies}{Istanbul}{Learned basics of machine learning and helped cleaning noisy data from a data set for industrial use.}
+
+% \vspace{0.25cm}
+
+\cventry{Jun. 2017 - Aug. 2017 }{Software Engineering Intern}{}{Bilgi Birikim Sistemleri}{Istanbul}{ Worked as a full-stack developer, created a web interface for processing data from a database. Documented it and presented to the executives.}
+% \vspace{0.25cm}
+
+\cventry{Sept. 2016 - Jun. 2017}{Learning Assistant}{NS101 Natural Sciences}{Sabanci University}{}{ Aided and guided freshman students in recitation sessions .}
+% \vspace{0.25cm}
+
+\section{Projects}
+\cventry{ April. 2020 - Sept.2020}{\href{https://keremyldrr.github.io/projects/3d-segmentation/}{Real-time 3D Instance Segmentation}}{}{Technical University of Munich}{}{Designed and implemented a real-time 3D object detection and tracking scheme with Python and ROS without using any annotated 3D data. }{}
+\cventry{ April. 2020 - Jun.2020}{\href{https://keremyldrr.github.io/projects/mot/}{Multiple Object Tracking with Tracktor}}{}{Technical University of Munich}{}{Implemented vanilla Tracktor with Faster-RCNN using PyTorch. Added a basic motion model and also a reidentificaiton network as the paper suggested for Tracktor++ . Developed using the MOT16 benchmark and achieved following results on the training set.}{}
+\cventry{ Mar. 2020 - Present}{\href{https://keremyldrr.github.io/projects/idp/}{Interdisciplinary Project}}{}{Technical University of Munich}{}{Extending the paper “Divergence-Free Shape Correspondence by Deformation” and representing a motion sequence as a time dependent vector field. Solving correspondence and matching problems for the whole sequence during the optimization.}{}
+% \cventry{ Oct. 2018 - Jan. 2019}{Parallel Hashing}{Program for Undergraduate Research}{Sabanci University}{}{Parallelized  City Hashing,MurMur Hashing,Tabulation Hashing algorithms with SIMD instructions, improved their performance. }{}
+% \vspace{0.25cm}
+\cventry{ Sept. 2018 - Jun. 2019}{\href{https://keremyldrr.github.io/projects/plant_disease/}{Plant Disease Identification with Deep Learning}}{Graduation Project}{Sabanci University}{\newline Trained a deep convolutional neural network for plant disease identification using transfer learning. Built a user interface for labeling data with multiple attributes. }{}{}
+\cventry{Feb. 2018 - Jun. 2018}{\href{https://keremyldrr.github.io/projects/plant_id/}{Plant Identification with Deep Learning Ensembles}}{ExpertLifeCLEF}{Sabanci University}{Generated random ECOC matrices for 10000 classes and used simulated annealing and hill climbing to maximize the hamming distance between rows. Trained the matrix on features extracted from a deep net model and used it for error correction.}{}
+% \vspace{0.25cm}
+\cventry{Sept. 2017 - Jun. 2018}{\href{https://keremyldrr.github.io/projects/sketch/}{Sketches on Raspberry Pi}}{Program for Undergraduate Research}{Sabanci University}{}{Implemented Count-Min Sketch (CMS) for frequency analysis of a data stream on Raspberry Pi 3. Used tabulation hashing to reduce estimation error by computing multiple hash values for an element, and restructured CMS in order to  process the data stream in parallel while avoiding possible race conditions.}
+%----------------------------------------------------------------------------------------
+%	COMPUTER SKILLS SECTION
+%----------------------------------------------------------------------------------------
+\section{Computer Skills}
+\cvitem{}{\textsc{C/C++} \textsc{Python},ROS,Pytorch,Tensorflow,OpenCV,\textsc{Matlab},\LaTeX ,\textsc{Unix/Linux},OpenMP,CUDA} 
+ \nobibliography{papers}
+ \bibliographystyle{ieeetr}% 
+
+
+\section{Publications}
+ \cvitem{2019}{\href{https://arxiv.org/pdf/1903.00729.pdf}{\bibentry{sketch}}}
+ \cvitem{2018}{\href{http://ceur-ws.org/Vol-2125/paper_176.pdf}{\bibentry{clef}}}
+
+%  \bibentry{clef}
+ 
+ \section{Workshops}
+\cventry{ Feb. 2019 - Mar. 2019}{Presenter}{Center of Excellence in Data Analytics}{Sabanci University}{}{\href{https://verim.sabanciuniv.edu/en/etkinlikler/deep-learning}{Presented a series of workshops on machine learning applications and frameworks and high performance computing applications on an HPC cluster.}}
+
+% \vspace{0.25cm}
+
+
+
+%----------------------------------------------------------------------------------------
+%	LANGUAGES SECTION
+%----------------------------------------------------------------------------------------
+
+\section{Languages}
+\cvitem{Turkish}{Native}{}{}{}{}
+\cvitem{English}{Advanced,TOEFL iBT Score : 102}{}{}{}{}
+\cvitem{German}{B1}{}{}{}
+% \cvitem{French}{Elementary}{}{}{}{}
+
+
+% \vspace{0.25cm}
+
+
+%----------------------------------------------------------------------------------------
+%	INTERESTS SECTION
+%----------------------------------------------------------------------------------------
+%\bigskip
+\section{Scholarships}
+\cventry{Sept. 2016 - June. 2019}{Sakip Sabanci Encouragement Scholarship\hfill}{}{}{}{Awarded with \%50 exemption of tuition fee by the Board of Trustees as a result of academic success.}{}
+\cventry{Sept. 2015 - June. 2019}{Sabanci Foundation University Entrance Scholarship}{}{}{}{\%25 exemption of school tuition fee. Ranked in the top  \% 2 in the university entrance exam.}{}
+
+% \section{Extracurricular Activities}
+
+% \renewcommand{\listitemsymbol}{-~} % Changes the symbol used for lists
+% % \cvitem{Feb. 2019 - Present}{CERN }{}{}{}{}
+
+% \cvitem{}{Tango}{}{}{}{}
+% \cvitem{}{Boxing}{}{}{}{}
+% \cvitem{}{Drumming}{}{}{}{}
+
+
+
+
+\end{document}

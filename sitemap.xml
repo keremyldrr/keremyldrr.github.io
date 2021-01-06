@@ -43,20 +43,43 @@
   </url>
   
   <url>
+    <loc>/categories/</loc>
+    <lastmod>2018-09-04T23:21:09+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/ipsum/</loc>
+    <lastmod>2018-09-04T23:21:09+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/latin/</loc>
+    <lastmod>2018-09-04T23:21:09+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/lorem/</loc>
+    <lastmod>2018-09-04T23:21:09+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/projects/plant_id/</loc>
     <lastmod>2018-09-04T23:21:09+02:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/</loc>
+    <loc>/tags/</loc>
+    <lastmod>2018-09-04T23:21:09+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/test-tag/</loc>
+    <lastmod>2018-09-04T23:21:09+02:00</lastmod>
   </url>
   
   <url>
     <loc>/month/</loc>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
   </url>
   
   <url>
