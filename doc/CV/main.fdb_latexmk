@@ -1,14 +1,14 @@
 # Fdb version 3
-["bibtex main"] 1609928683 "main.aux" "main.bbl" "main" 1609928683
+["bibtex main"] 1609961757 "main.aux" "main.bbl" "main" 1609961757
   "/usr/share/texmf-dist/bibtex/bst/base/ieeetr.bst" 1607249373 18361 1a00e58565e7f19bf2b3e1bfb82254ae ""
-  "main.aux" 1609928683 756 8eefe0a0e7c188d08f15e8d3a6bc9505 "pdflatex"
+  "main.aux" 1609961757 756 8eefe0a0e7c188d08f15e8d3a6bc9505 "pdflatex"
   "papers.bib" 1609697199 518 047ad1abbe50faeefbc1141c3506982b ""
   (generated)
   "main.bbl"
   "main.blg"
-["pdflatex"] 1609928683 "/home/keremy/Documents/Personal/KeremYildirir_CV/CV/main.tex" "/home/keremy/Documents/Personal/KeremYildirir_CV/CV/main.pdf" "main" 1609928683
-  "/home/keremy/Documents/Personal/KeremYildirir_CV/CV/main.aux" 1609928683 756 8eefe0a0e7c188d08f15e8d3a6bc9505 ""
-  "/home/keremy/Documents/Personal/KeremYildirir_CV/CV/main.tex" 1609928669 10965 6b785616cf21095ba76ff69176ec48e2 ""
+["pdflatex"] 1609961758 "/home/keremy/Documents/Personal/KeremYildirir_CV/CV/main.tex" "/home/keremy/Documents/Personal/KeremYildirir_CV/CV/main.pdf" "main" 1609961758
+  "/home/keremy/Documents/Personal/KeremYildirir_CV/CV/main.aux" 1609961757 756 8eefe0a0e7c188d08f15e8d3a6bc9505 ""
+  "/home/keremy/Documents/Personal/KeremYildirir_CV/CV/main.tex" 1609961752 10967 5769b28218f1804fd9c5902235875ca9 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc" 1607188752 2933 9ad527ce78d7c5fa0a642dead095f172 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/libertine/lbtn_7grukw.enc" 1607188752 2934 a4a9158faed2e9e89c771b4e3b7fc12f ""
   "/usr/share/texmf-dist/fonts/enc/dvips/libertine/lbtn_ncsllp.enc" 1607188752 3288 25b5d43be7be8cba51d85b642598b3b0 ""
@@ -130,10 +130,10 @@
   "/usr/share/texmf-dist/web2c/texmf.cnf" 1607249373 33301 a3134070eacafb10b1f371612ce2650d ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1609697591 4885835 225b430335ea75120e4d14f95280dfb9 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1609697560 2635858 5726162bb95276a3fa359364c160b35f ""
-  "main.aux" 1609928683 756 8eefe0a0e7c188d08f15e8d3a6bc9505 "pdflatex"
-  "main.bbl" 1609928683 442 427194b618f86705cb857070c4c5d49a "bibtex main"
-  "main.out" 1609928683 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "main.tex" 1609928669 10965 6b785616cf21095ba76ff69176ec48e2 ""
+  "main.aux" 1609961757 756 8eefe0a0e7c188d08f15e8d3a6bc9505 "pdflatex"
+  "main.bbl" 1609961758 442 427194b618f86705cb857070c4c5d49a "bibtex main"
+  "main.out" 1609961757 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "main.tex" 1609961752 10967 5769b28218f1804fd9c5902235875ca9 ""
   "moderncv.cls" 1609697199 17250 b504328d8819af0dbf07c33c9e2441eb ""
   "moderncvcolorblack.sty" 1609697199 985 91998c460583ebbab2a53e25d97e470f ""
   "moderncvcompatibility.sty" 1609697199 3397 6646c8798a6ebba586650d124c645c99 ""
@@ -141,9 +141,9 @@
   "prof_pic.jpg" 1609697199 77156 d51ff021ef084f63704cb86dd9b5d6cc ""
   "tweaklist.sty" 1609697199 1965 7ec24f2691e7167d3f5445b230b1b4e4 ""
   (generated)
-  "main.pdf"
-  "main.aux"
-  "main.log"
   "/home/keremy/Documents/Personal/KeremYildirir_CV/CV/main.log"
   "main.out"
+  "main.aux"
   "/home/keremy/Documents/Personal/KeremYildirir_CV/CV/main.pdf"
+  "main.log"
+  "main.pdf"
