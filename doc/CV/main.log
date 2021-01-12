@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Arch Linux) (preloaded format=pdflatex 2021.1.3)  6 JAN 2021 20:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Arch Linux) (preloaded format=pdflatex 2021.1.8)  12 JAN 2021 21:23
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -519,16 +519,16 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
 (Font)              scaled to size 12.0pt on input line 79.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/sl' in size <12> not available
-(Font)              Font shape `T1/LinuxLibertineT-TLF/m/it' tried instead on input line 93.
+(Font)              Font shape `T1/LinuxLibertineT-TLF/m/it' tried instead on input line 94.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
-(Font)              scaled to size 12.0pt on input line 93.
+(Font)              scaled to size 12.0pt on input line 94.
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} </home/keremy/Documents/Personal/KeremYildirir_CV/CV/prof_pic.jpg>]
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/sc' will be
-(Font)              scaled to size 12.0pt on input line 128.
+(Font)              scaled to size 12.0pt on input line 129.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 8.0pt on input line 128.
+(Font)              scaled to size 8.0pt on input line 129.
  (/home/keremy/Documents/Personal/KeremYildirir_CV/CV/main.bbl
 
 /home/keremy/Documents/Personal/KeremYildirir_CV/CV/main.bbl:3: LaTeX Error: Lonely \item--perhaps a missing list environment.
@@ -566,23 +566,23 @@ Underfull \hbox (badness 10000) detected at line 8
 
 )
 
-LaTeX Warning: Citation `sketch' undefined on input line 134.
+LaTeX Warning: Citation `sketch' undefined on input line 135.
 
 
-LaTeX Warning: Citation `clef' undefined on input line 135.
+LaTeX Warning: Citation `clef' undefined on input line 136.
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.180 \end{document}
+l.181 \end{document}
                      [2pdfTeX warning (ext4): destination with the same identifier (name{cite.sketch}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.180 \end{document}
+l.181 \end{document}
                     pdfTeX warning (ext4): destination with the same identifier (name{cite.clef}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
-l.180 \end{document}
+l.181 \end{document}
                     ] (/home/keremy/Documents/Personal/KeremYildirir_CV/CV/main.aux)
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
@@ -603,7 +603,7 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  80i,12n,85p,608b,364s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/enc/dvips/libertine/lbtn_ncsllp.enc}{/usr/share/texmf-dist/fonts/enc/dvips/libertine/lbtn_nh77jq.enc}{/usr/share/texmf-dist/fonts/enc/dvips/libertine/lbtn_7grukw.enc}{/usr/share/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc}</usr/share/texmf-dist/fonts/type1/public/libertine/LinLibertineT.pfb></usr/share/texmf-dist/fonts/type1/public/libertine/LinLibertineTB.pfb></usr/share/texmf-dist/fonts/type1/public/libertine/LinLibertineTI.pfb></usr/share/texmf-dist/fonts/type1/public/marvosym/marvosym.pfb>
-Output written on /home/keremy/Documents/Personal/KeremYildirir_CV/CV/main.pdf (2 pages, 345145 bytes).
+Output written on /home/keremy/Documents/Personal/KeremYildirir_CV/CV/main.pdf (2 pages, 345137 bytes).
 PDF statistics:
  56 PDF objects out of 1000 (max. 8388607)
  46 compressed objects within 1 object stream
