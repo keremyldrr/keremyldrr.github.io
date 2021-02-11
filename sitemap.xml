@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/projects/kinecfusion/</loc>
+    <lastmod>2021-02-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/projects/3d-segmentation/</loc>
     <lastmod>2020-07-04T23:30:14+02:00</lastmod>
   </url>
