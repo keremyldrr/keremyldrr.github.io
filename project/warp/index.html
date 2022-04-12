@@ -64,7 +64,7 @@
   
     
   
-  <meta name="description" content="Write about your project here..." />
+  <meta name="description" content="    " />
 
   
   <link rel="alternate" hreflang="en-us" href="https://example.com/project/warp/" />
@@ -307,16 +307,16 @@
   <meta property="og:site_name" content="Kerem Yildirir" />
   <meta property="og:url" content="https://example.com/project/warp/" />
   <meta property="og:title" content="3D Real-Time Instance Segmentation with LDLS-YOLACT | Kerem Yildirir" />
-  <meta property="og:description" content="Write about your project here..." /><meta property="og:image" content="https://example.com/project/warp/featured.jpg" />
+  <meta property="og:description" content="    " /><meta property="og:image" content="https://example.com/project/warp/featured.jpg" />
     <meta property="twitter:image" content="https://example.com/project/warp/featured.jpg" /><meta property="og:locale" content="en-us" />
   
     
       <meta
         property="article:published_time"
-        content="2022-01-01T00:00:00&#43;00:00"
+        content="2020-12-01T00:00:00&#43;00:00"
       />
     
-    <meta property="article:modified_time" content="2022-01-01T00:00:00&#43;00:00">
+    <meta property="article:modified_time" content="2020-12-01T00:00:00&#43;00:00">
   
 
   
@@ -346,8 +346,8 @@
     "https://example.com/project/warp/featured.jpg"
   ],
   
-  "datePublished": "2022-01-01T00:00:00Z",
-  "dateModified": "2022-01-01T00:00:00Z",
+  "datePublished": "2020-12-01T00:00:00Z",
+  "dateModified": "2020-12-01T00:00:00Z",
   
   "author": {
     "@type": "Person",
@@ -362,7 +362,7 @@
       "url": "https://example.com/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png"
     }
   },
-  "description": "Write about your project here..."
+  "description": "    "
 }
 </script>
 
@@ -595,7 +595,7 @@
     
       
     
-    Jan 1, 2022
+    Dec 1, 2020
   </span>
   
 
@@ -618,6 +618,63 @@
 
 
 
+<div class="btn-links mb-3">
+  
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  
+    
+  
+<a class="btn btn-outline-primary btn-page-header" href="/github" target="_blank" rel="noopener">
+  Code
+</a>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+<a class="btn btn-outline-primary btn-page-header" href="/project/warp/slides.pdf" target="_blank" rel="noopener">
+  Slides
+</a>
+
+
+
+  
+  
+    
+  
+<a class="btn btn-outline-primary btn-page-header" href="https://www.youtube.com/watch?v=uLb_L60hxHc" target="_blank" rel="noopener">
+  Video
+</a>
+
+
+
+
+
+</div>
+
 
 </div>
 
@@ -634,7 +691,30 @@
   <div class="article-container">
 
     <div class="article-style">
-      
+      <p>In this project I&rsquo;ve developed a 3D object detection and tracking pipeline for autonomous driving with Python and ROS without any labeled 3D data. Our hardware were only  a Livox mid-100 lidar sensor and a RealSense camera. After calibrating the sensors, the pipeline is as follows:</p>
+<ul>
+<li>Get 2D instance segmentation of the current camera image using <a href="https://arxiv.org/abs/1904.02689" target="_blank" rel="noopener">YOLACT</a>.</li>
+<li>Update the id numbers of the detected entitites using <a href="https://arxiv.org/abs/1602.00763" target="_blank" rel="noopener">SORT</a></li>
+<li>Project the masks into 3D point cloud using <a href="https://arxiv.org/abs/1910.13955" target="_blank" rel="noopener">LDLS</a></li>
+<li>Compute the 3D bounding boxes for the detected areas.</li>
+</ul>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/h26dd4iHiVg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/uLb_L60hxHc" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/FFxR8pmEyY0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>Source code can be found  <a href="[%22https://github.com/keremyldrr/3D-Instance-Segmentation-with-LDLS-YOLACT%22]">here </a>page. For the implementation with ROS, please get in touch.</p>
+
     </div>
 
     
@@ -644,7 +724,7 @@
 
 <div class="article-tags">
   
-  <a class="badge badge-light" href="/tag/ml/">ML</a>
+  <a class="badge badge-light" href="/tag/machine-learning/">Machine Learning</a>
   
   <a class="badge badge-light" href="/tag/computer-vision/">Computer Vision</a>
   
@@ -677,13 +757,13 @@
   <div class="media author-card content-widget-hr">
     
       
-      <a href="https://example.com/"><img class="avatar mr-3 avatar-circle" src="/author/kerem-yildirir/avatar_huecafc26800e37bd4aacdb6f42f086089_227482_270x270_fill_q75_lanczos_center.jpg" alt="Kerem Yildirir"></a>
+      <a href="https://example.com/"><img class="avatar mr-3 avatar-circle" src="/author/kerem-yildirir/avatar_hu98497d67212a00a0332f4db276649936_410043_270x270_fill_lanczos_center_3.png" alt="Kerem Yildirir"></a>
     
 
     <div class="media-body">
       <h5 class="card-title"><a href="https://example.com/">Kerem Yildirir</a></h5>
       <h6 class="card-subtitle">M.Sc in Informatics</h6>
-      <p class="card-text">My research interests include distributed robotics, mobile computing and  programmable matter.</p>
+      <p class="card-text">My research interests include 3d/2d object detection, tracking, 3d reconstruction and semantic scene understanding.</p>
       <ul class="network-icon" aria-hidden="true">
   
     
@@ -715,7 +795,7 @@
       
     
     <li>
-      <a href="https://twitter.com/wowchemy" target="_blank" rel="noopener">
+      <a href="https://www.linkedin.com/in/kerem-yildirir-75b070145/" target="_blank" rel="noopener">
         <i class="fab fa-linkedin"></i>
       </a>
     </li>
@@ -732,7 +812,7 @@
       
     
     <li>
-      <a href="https://instagram.com/geocushen" target="_blank" rel="noopener">
+      <a href="https://github.com/keremyldrr" target="_blank" rel="noopener">
         <i class="fab fa-github"></i>
       </a>
     </li>
