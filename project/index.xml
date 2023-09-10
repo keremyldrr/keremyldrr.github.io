@@ -1,25 +1,55 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Projects | Kerem Yildirir</title>
-    <link>https://example.com/project/</link>
-      <atom:link href="https://example.com/project/index.xml" rel="self" type="application/rss+xml" />
+    <title>Projects | Kerem Y</title>
+    <link>https://www.keremyildirir.com/project/</link>
+      <atom:link href="https://www.keremyildirir.com/project/index.xml" rel="self" type="application/rss+xml" />
     <description>Projects</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sat, 01 Jan 2022 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 15 Sep 2022 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://example.com/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
+      <url>https://www.keremyildirir.com/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
       <title>Projects</title>
-      <link>https://example.com/project/</link>
+      <link>https://www.keremyildirir.com/project/</link>
     </image>
     
     <item>
+      <title>Probabilistic Object Detection and Reconstruction from a single RGB-D frame</title>
+      <link>https://www.keremyildirir.com/project/thesis/</link>
+      <pubDate>Thu, 15 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://www.keremyildirir.com/project/thesis/</guid>
+      <description>&lt;p&gt;Semantic scene understanding is crucial aspect of modern day robotic applications. With
+the recent advances in deep learning and the increased availability of large scale richly
+annotated datasets, popularity of 3D scene understanding tasks has increased rapidly.
+In this work, we present a probabilistic hybrid solution with point-based and volumetric components to jointly localize, classify and complete the object instances given a
+single RGB-D frame. Our reconstructions are not restricted by the camera field of view,
+and aims to complete the object geometry even outside the camera frustum where the
+input signal is significantly weaker compared to the rest of the scene.
+Our probabilistic detection approach aims to combat ambiguous scenarios where
+objects in the scene have weak representation, and multiple completions are plausible
+for an object. We show that instead of outputting directly regressed bounding boxes,
+learning a distribution of bounding boxes can help us generate alternative suggestions for
+every detection proposal, which improves both detection and completion performance
+when utilized.&lt;/p&gt;
+&lt;figure&gt;
+&lt;img src=&#34;https://www.keremyildirir.com/project/thesis/network.png&#34; alt=&#34;drawing&#34; width=&#34;600&#34;/&gt;
+&lt;figcaption&gt; Detection and completion pipeline from a single image &lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;After performing detection and learning the bounding box distributions, we can sample multiple completion options for objects, one example is the following.&lt;/p&gt;
+&lt;figure&gt;
+&lt;img src=&#34;https://www.keremyildirir.com/project/thesis/sampled_sic.png&#34; alt=&#34;drawing&#34; width=&#34;600&#34;/&gt;
+&lt;figcaption&gt; Multiple chair completions for the point cloud representation in the detected box.&lt;/figcaption&gt;
+&lt;/figure&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Monte Carlo Dropout for Object Detection  on Point Clouds</title>
-      <link>https://example.com/project/gr/</link>
+      <link>https://www.keremyildirir.com/project/gr/</link>
       <pubDate>Sat, 01 Jan 2022 00:00:00 +0000</pubDate>
-      <guid>https://example.com/project/gr/</guid>
+      <guid>https://www.keremyildirir.com/project/gr/</guid>
       <description>&lt;p&gt;In this work, we take VoteNet, a state-of-the-art deep neural network for object detection, as a basis and extend it for computing epistemic uncertainty in itspredictions with Monte Carlo dropout.   We show that this quantity can be used as a weighting factor for predictions, leading to an increase in the overall performance ofthe model, and also as a metric for selecting the most beneficial scenes to annotate for training from unknown data for active learning scenarios.&lt;/p&gt;
 &lt;figure&gt;
-&lt;img src=&#34;https://example.com/project/gr/gr.gif&#34; alt=&#34;drawing&#34; width=&#34;600&#34;/&gt;
+&lt;img src=&#34;https://www.keremyildirir.com/project/gr/gr.gif&#34; alt=&#34;drawing&#34; width=&#34;600&#34;/&gt;
 &lt;figcaption&gt;Computation of uncertainty &lt;/figcaption&gt;
 &lt;/figure&gt;
 </description>
@@ -27,9 +57,9 @@
     
     <item>
       <title>Indirect Visual Odometry With Optical Flow</title>
-      <link>https://example.com/project/visnav/</link>
+      <link>https://www.keremyildirir.com/project/visnav/</link>
       <pubDate>Fri, 06 Aug 2021 00:00:00 +0000</pubDate>
-      <guid>https://example.com/project/visnav/</guid>
+      <guid>https://www.keremyildirir.com/project/visnav/</guid>
       <description>&lt;p&gt;Extending a Stereo camera Visual Odometry implementation with Optical Flow per the paper by Usenko et al. Optical flow was used to track detected Keypoints through frames and again was used to carry them to the other camera to triangulate 3D points in the map.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Initial implementation of a stereo Visual Odometry application from a provided template.&lt;/li&gt;
@@ -38,7 +68,7 @@
 &lt;li&gt;Using the key points matched from both cameras to triangulate 3D points for mapping.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;figure&gt;
-&lt;img src=&#34;https://example.com/project/visnav/ofvo.gif&#34; alt=&#34;drawing&#34; width=&#34;600&#34;/&gt;
+&lt;img src=&#34;https://www.keremyildirir.com/project/visnav/ofvo.gif&#34; alt=&#34;drawing&#34; width=&#34;600&#34;/&gt;
 &lt;figcaption&gt;Project pipeline&lt;/figcaption&gt;
 &lt;/figure&gt;
 </description>
@@ -46,18 +76,18 @@
     
     <item>
       <title>Analysis and Experiments on Deep Closest Points Architecture</title>
-      <link>https://example.com/project/dcp/</link>
+      <link>https://www.keremyildirir.com/project/dcp/</link>
       <pubDate>Wed, 07 Jul 2021 00:00:00 +0000</pubDate>
-      <guid>https://example.com/project/dcp/</guid>
+      <guid>https://www.keremyildirir.com/project/dcp/</guid>
       <description>&lt;p&gt;The goal of the project was to conduct experiments and analyze their results on the DCP architecture by Wang et al. Mixamo dataset was used to retrain the model and some tests were also done with the TUM RGBD dataset. Tried adding different regularizations, adding color as an additional input signal, and different sampling of points to improve the performance of the model in real-life scenarios.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>3D Real-Time Instance Segmentation with LDLS-YOLACT</title>
-      <link>https://example.com/project/warp/</link>
+      <link>https://www.keremyildirir.com/project/warp/</link>
       <pubDate>Tue, 01 Dec 2020 00:00:00 +0000</pubDate>
-      <guid>https://example.com/project/warp/</guid>
+      <guid>https://www.keremyildirir.com/project/warp/</guid>
       <description>&lt;p&gt;In this project I&amp;rsquo;ve developed a 3D object detection and tracking pipeline for autonomous driving with Python and ROS without any labeled 3D data. Our hardware were only  a Livox mid-100 lidar sensor and a RealSense camera. After calibrating the sensors, the pipeline is as follows:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Get 2D instance segmentation of the current camera image using &lt;a href=&#34;https://arxiv.org/abs/1904.02689&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;YOLACT&lt;/a&gt;.&lt;/li&gt;
@@ -86,9 +116,9 @@
     
     <item>
       <title>KinectFusion: Dense Surface Mapping and Tracking</title>
-      <link>https://example.com/project/kinectfusion/</link>
+      <link>https://www.keremyildirir.com/project/kinectfusion/</link>
       <pubDate>Tue, 01 Dec 2020 00:00:00 +0000</pubDate>
-      <guid>https://example.com/project/kinectfusion/</guid>
+      <guid>https://www.keremyildirir.com/project/kinectfusion/</guid>
       <description>&lt;p&gt;Implementation of the paper &lt;a href=&#34;https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/kinectfusion-uist-comp.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;KinectFusion&lt;/a&gt; by Microsoft using C++ and CUDA. The goal of the project is to develop a method for accurate real-time mapping of indoor scenes, using only a low-cost depth camera and graphics hardware. Presentation video can be seen below.&lt;/p&gt;
 
 &lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
@@ -100,41 +130,41 @@
     
     <item>
       <title>Multiple Object Tracking with Tracktor&#43;&#43;</title>
-      <link>https://example.com/project/mot/</link>
+      <link>https://www.keremyildirir.com/project/mot/</link>
       <pubDate>Sat, 07 Nov 2020 00:00:00 +0000</pubDate>
-      <guid>https://example.com/project/mot/</guid>
+      <guid>https://www.keremyildirir.com/project/mot/</guid>
       <description>&lt;p&gt;Implemented vanilla Tracktor with Faster-RCNN using PyTorch. Added a basic motion model and also a reidentificaiton network as the paper suggested for Tracktor++.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Divergence-Free Shape Correspondence with Time Dependent Vector Fields</title>
-      <link>https://example.com/project/divfree/</link>
+      <link>https://www.keremyildirir.com/project/divfree/</link>
       <pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate>
-      <guid>https://example.com/project/divfree/</guid>
+      <guid>https://www.keremyildirir.com/project/divfree/</guid>
       <description>&lt;p&gt;We  extended the paper “Divergence-Free Shape Correspondence by Deformation” and representing a motion sequence as a time dependent vector field. We solve correspondence and matching problems for the whole sequence during the optimization. Some of the current results can be seen below. Blue is shape is our estimated deformation and orange is the ground truth in the Dynamic FAUST dataset.&lt;/p&gt;
 
-&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
-  &lt;iframe src=&#34;https://www.youtube.com/embed/1ZrKijWSct8&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
-&lt;/div&gt;
+  &lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
+    &lt;iframe src=&#34;https://www.youtube.com/embed/1ZrKijWSct8&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+  &lt;/div&gt;
 
 </description>
     </item>
     
     <item>
       <title>Plant Disease Classification</title>
-      <link>https://example.com/project/plant/</link>
+      <link>https://www.keremyildirir.com/project/plant/</link>
       <pubDate>Tue, 01 Oct 2019 00:00:00 +0000</pubDate>
-      <guid>https://example.com/project/plant/</guid>
+      <guid>https://www.keremyildirir.com/project/plant/</guid>
       <description>&lt;p&gt;Detection of plant diseases via computer vision based systems are being used to identify plant diseases promptly, to prevent the spread of the disease. In this work, we present a system for classifying plant diseases from photographs of the diseased parts of the plant. The system is trained using transfer learning on convolutional neural networks (VGGNet) which are trained to classify 38 plant diseases or 11 disease classes. 95.09% average accuracy was obtained on plant-disease classification using PlantVillage dataset. On the other hand, 96.27% average accuracy was obtained for disease classification instead of plant-disease classification. VGGNet obtained these scores.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>One Table to Count Them All: Parallel Frequency Estimation on Single-Board Computers</title>
-      <link>https://example.com/project/sketch/</link>
+      <link>https://www.keremyildirir.com/project/sketch/</link>
       <pubDate>Mon, 01 Jan 2018 00:00:00 +0000</pubDate>
-      <guid>https://example.com/project/sketch/</guid>
+      <guid>https://www.keremyildirir.com/project/sketch/</guid>
       <description>&lt;p&gt;Abstract:
 Sketches are probabilistic data structures that can provide approximate results within mathematically proven error bounds while using orders of magnitude less memory than traditional approaches. They are tailored for streaming data analysis on architectures even with limited memory such as single-board computers that are widely exploited for IoT and edge computing. Since these devices offer multiple cores, with efficient parallel sketching schemes, they are able to manage high volumes of data streams. However, since their caches are relatively small, a careful parallelization is required. In this work, we focus on the frequency estimation problem and evaluate the performance of a high-end server, a 4-core Raspberry Pi and an 8-core Odroid. As a sketch, we employed the widely used Count-Min Sketch. To hash the stream in parallel and in a cache-friendly way, we applied a novel tabulation approach and rearranged the auxiliary tables into a single one. To parallelize the process with performance, we modified the workflow and applied a form of buffering between hash computations and sketch updates. Today, many single-board computers have heterogeneous processors in which slow and fast cores are equipped together. To utilize all these cores to their full potential, we proposed a dynamic load-balancing mechanism which significantly increased the performance of frequency estimation.&lt;/p&gt;
 &lt;p&gt;[[https://arxiv.org/abs/1903.00729][Link to paper]&lt;/p&gt;

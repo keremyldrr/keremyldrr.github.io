@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Computer Vision | Kerem Yildirir</title>
+    <title>Computer Vision | Academic</title>
     <link>https://example.com/tag/computer-vision/</link>
       <atom:link href="https://example.com/tag/computer-vision/index.xml" rel="self" type="application/rss+xml" />
     <description>Computer Vision</description>
@@ -114,9 +114,9 @@
       <guid>https://example.com/project/divfree/</guid>
       <description>&lt;p&gt;We  extended the paper “Divergence-Free Shape Correspondence by Deformation” and representing a motion sequence as a time dependent vector field. We solve correspondence and matching problems for the whole sequence during the optimization. Some of the current results can be seen below. Blue is shape is our estimated deformation and orange is the ground truth in the Dynamic FAUST dataset.&lt;/p&gt;
 
-&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
-  &lt;iframe src=&#34;https://www.youtube.com/embed/1ZrKijWSct8&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
-&lt;/div&gt;
+  &lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
+    &lt;iframe src=&#34;https://www.youtube.com/embed/1ZrKijWSct8&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+  &lt;/div&gt;
 
 </description>
     </item>
