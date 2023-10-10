@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- This site was created with Wowchemy. https://www.wowchemy.com -->
-<!-- Last Published: October 8, 2023 --><html lang="en-us" >
+<!-- Last Published: October 10, 2023 --><html lang="en-us" >
 
 
 <head>
@@ -279,7 +279,7 @@
 
   
 
-<meta name="description" content="With the recent developments in the field of artificial intelligence, a lot new use cases are emerging. Developing the model is a big challenge itself, but many other challenges present themselves when we want to turn this model into a product." />
+<meta name="description" content="With the recent developments in the field of artificial intelligence, a lot of new use cases are emerging. Developing the model is a big challenge itself, but many other challenges present themselves when we want to turn this model into a product." />
 
 
 
@@ -321,7 +321,7 @@
 <meta property="og:site_name" content="Kerem Y" />
 <meta property="og:url" content="https://www.keremyildirir.com/post/triton/" />
 <meta property="og:title" content="Triton Inference Server | Kerem Y" />
-<meta property="og:description" content="With the recent developments in the field of artificial intelligence, a lot new use cases are emerging. Developing the model is a big challenge itself, but many other challenges present themselves when we want to turn this model into a product." /><meta property="og:image" content="https://www.keremyildirir.com/post/triton/featured.png" /><meta property="og:locale" content="en-us" />
+<meta property="og:description" content="With the recent developments in the field of artificial intelligence, a lot of new use cases are emerging. Developing the model is a big challenge itself, but many other challenges present themselves when we want to turn this model into a product." /><meta property="og:image" content="https://www.keremyildirir.com/post/triton/featured.png" /><meta property="og:locale" content="en-us" />
 
   
     <meta
@@ -380,7 +380,7 @@
       "url": "https://www.keremyildirir.com/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_192x192_fill_lanczos_center_3.png"
     }
   },
-  "description": "With the recent developments in the field of artificial intelligence, a lot new use cases are emerging. Developing the model is a big challenge itself, but many other challenges present themselves when we want to turn this model into a product."
+  "description": "With the recent developments in the field of artificial intelligence, a lot of new use cases are emerging. Developing the model is a big challenge itself, but many other challenges present themselves when we want to turn this model into a product."
 }
 </script>
 
@@ -792,7 +792,7 @@
   <div class="article-container">
 
     <div class="article-style">
-      <p>With the recent developments in the field of artificial intelligence, a lot new use cases are emerging. Developing the model is a big challenge itself, but many other challenges present themselves when we want to turn this model into a product. The workflow of a  machine learning application typically consists of 3 stages:</p>
+      <p>With the recent developments in the field of artificial intelligence, a lot of new use cases are emerging. Developing the model is a big challenge itself, but many other challenges present themselves when we want to turn this model into a product. The workflow of a  machine learning application typically consists of 3 stages:</p>
 <ul>
 <li>Exploration and data processing</li>
 <li>Modeling</li>
@@ -803,7 +803,8 @@
 <figcaption>The machine learning workflow (Source: Become a Machine Learning Engineer Nanodegree (Udacity)) </figcaption>
 </figure>
 First stage focuses on retrieving and processing high quality data, which is essential for a succesful model. Second stage is where the model is developed, trained and validated. The final stage is when the model has passed the necessary checks and benchmarks and is ready to be served for production.
-<p>There are many tools for serving models, such  as <a href="https://pytorch.org/serve/index.html" target="_blank" rel="noopener">TorchServe</a> and <a href="https://www.tensorflow.org/tfx/guide/serving" target="_blank" rel="noopener">Tensorflow Serve</a> engines from PyTorch and Tensorflow. <a href="https://bentoml.com/" target="_blank" rel="noopener">BentoML</a> offers a complete suite for training and deploying ML applications. NVIDIA Triton Inference Server, or Triton, is an open-source software that addresses the deployment stage. It does NOT offer any functionality regarding the first two stages, but it stands out with its comprehensive documentation, flexibility and hardware optimization options.</p>
+<p>There are many tools for serving models, such  as <a href="https://pytorch.org/serve/index.html" target="_blank" rel="noopener">TorchServe</a> and <a href="https://www.tensorflow.org/tfx/guide/serving" target="_blank" rel="noopener">Tensorflow Serve</a> engines from PyTorch and Tensorflow. <a href="https://bentoml.com/" target="_blank" rel="noopener">BentoML</a> offers a complete suite for training and deploying ML applications.</p>
+<p>NVIDIA Triton Inference Server, or Triton, is an open-source software that addresses the deployment stage. It does NOT offer any functionality regarding the first two stages, but it stands out with its comprehensive documentation, flexibility and hardware optimization options.</p>
 <p>It offers support for most machine learning (ML) frameworks as well as custom C++ and Python backends. This reduces the need for multiple inference servers for different frameworks, allowing you to simplify your machine learning infrastructure. It seamlessly works with NVIDIA GPUs and allow simultaneous model execution on multiple GPUs, increasing hardware utilization.</p>
 <p>By default, Triton does not offer any autoscaling, although it can be achieved by configuring Kubernetes, or using NVIDIA&rsquo;s native tool, Triton Management Service(TMS).</p>
 <p><a href="https://developer.nvidia.com/blog/scaling-deep-learning-deployments-with-nvidia-triton-management-service" target="_blank" rel="noopener">TMS</a> enables the automated deployment of multiple Triton Inference Server instances in Kubernetes. It provides resource-efficient model orchestration on GPUs and CPUs, simplifying the scaling and management of AI models in production environments.</p>
@@ -814,7 +815,7 @@ First stage focuses on retrieving and processing high quality data, which is ess
 <!-- 4. **Triton Model Analyzer**: Triton Model Analyzer is a tool that automates the evaluation of model deployment configurations. It assesses parameters such as batch size, precision, and concurrent execution instances on the target processor. By analyzing these configurations, Triton Model Analyzer helps select the optimal settings to meet application quality-of-service constraints, reducing the time needed to find the best configuration. -->
 <!-- 5. **Unified Inference Server**: Triton serves as a unified solution for deploying models from various deep learning frameworks. It supports popular frameworks like TensorFlow, PyTorch, ONNX, and more. This eliminates the need for multiple inference servers for different frameworks, simplifying and streamlining the deployment process. -->
 <h2 id="getting-started">Getting Started</h2>
-<p>In this article we will demonstrate a simple scenario where we want to deploy a model with Triton on a CPU in a local machine. We will first pull the pretrained ResNet50 Model, then save it as Tensorflow SavedModel object. After saving the model weights, we will create a model repository for the Triton Server, and run the server using <code>docker</code>. When the server is up and running, we will write a simple client script to communicate with the server and send inference requests.</p>
+<p>In this article we will demonstrate a simple scenario where we want to deploy a model with Triton on a CPU in a local machine. We will first pull the pretrained ResNet50 model, then save it as Tensorflow SavedModel object. After saving the model weights, we will create a model repository for the Triton Server, and run the server using <code>docker</code>. When the server is up and running, we will write a simple client script to communicate with the server and send inference requests.</p>
 <h2 id="creating-a-model">Creating a model</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tensorflow.keras.applications</span> <span class="kn">import</span> <span class="n">ResNet50</span>
@@ -832,17 +833,17 @@ First stage focuses on retrieving and processing high quality data, which is ess
 </span></span><span class="line"><span class="cl">      [config.pbtxt]
 </span></span><span class="line"><span class="cl">      [&lt;output-labels-file&gt; ...]
 </span></span><span class="line"><span class="cl">      &lt;version&gt;/
-</span></span><span class="line"><span class="cl">        &lt;model-definition-file&gt;
+</span></span><span class="line"><span class="cl">        &lt;model-definition-directory&gt;
 </span></span><span class="line"><span class="cl">      &lt;version&gt;/
-</span></span><span class="line"><span class="cl">        &lt;model-definition-file&gt;
+</span></span><span class="line"><span class="cl">        &lt;model-definition-directory&gt;
 </span></span><span class="line"><span class="cl">      ...
 </span></span><span class="line"><span class="cl">    &lt;model-name&gt;/
 </span></span><span class="line"><span class="cl">      [config.pbtxt]
 </span></span><span class="line"><span class="cl">      [&lt;output-labels-file&gt; ...]
 </span></span><span class="line"><span class="cl">      &lt;version&gt;/
-</span></span><span class="line"><span class="cl">        &lt;model-definition-file&gt;
+</span></span><span class="line"><span class="cl">        &lt;model-definition-directory&gt;
 </span></span><span class="line"><span class="cl">      &lt;version&gt;/
-</span></span><span class="line"><span class="cl">        &lt;model-definition-file&gt;
+</span></span><span class="line"><span class="cl">        &lt;model-definition-directory&gt;
 </span></span><span class="line"><span class="cl">      ...
 </span></span><span class="line"><span class="cl">    ...
 </span></span></code></pre></div><p>and like this for this case:</p>
@@ -860,7 +861,7 @@ First stage focuses on retrieving and processing high quality data, which is ess
 </span></span></code></pre></div><p>Each model needs to be given a name, and at least one version folder(as an integer), and the model definition file, which corresponds to the model weights file. Model definition file should be named after the type of model, <code>model.savedmodel</code> in this case.</p>
 <p>In order to achieve this, we need to create the structure and copy the model files under <code>saved_model_directory</code> to the <code>model_repository/resnet50/1/model.savedmodel/</code>.</p>
 <p>After defining the model repository, we need to start the Triton Inference Server with the given model repository as an argument. The easiest way of doing it is with Docker. Simply run the command with the desired version:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run --gpus<span class="o">=</span><span class="m">1</span> --rm -p8000:8000 -p8001:8001 -p8002:8002 -v/path/to/model_repository:/models nvcr.io/nvidia/tritonserver:23.08-py3 tritonserver --model-repository<span class="o">=</span>/models
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run --rm -p8000:8000 -p8001:8001 -p8002:8002 -v/path/to/model_repository:/models nvcr.io/nvidia/tritonserver:23.08-py3 tritonserver --model-repository<span class="o">=</span>/models
 </span></span></code></pre></div><p>If everything works as expected, you should see the logs in the following format:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">I0926 11:37:40.511677 <span class="m">1</span> server.cc:674<span class="o">]</span> 
 </span></span><span class="line"><span class="cl">+----------+---------+--------+
@@ -981,7 +982,7 @@ we get the following output:
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">❯ python client.py
 </span></span><span class="line"><span class="cl">brown bear, bruin, Ursus arctos
 </span></span></code></pre></div><h3 id="next-steps">Next steps</h3>
-<p>We now have deployed a ResNet50 model inside a Triton Inference Server! Next chapters in this tutorial series will cover the more advanced options of the Triton Inference Server. We will use the Triton Model Analyzer to optimize the model configuration for our requirements, put carry the preprocessing computation to the Triton, and develop a mini web application to integrate the client in. Stay tuned!</p>
+<p>We now have deployed a ResNet50 model inside a Triton Inference Server! Next chapters in this tutorial series will cover the more advanced options of the Triton Inference Server. We will use the Triton Model Analyzer to optimize the model configuration for our requirements, carry the preprocessing computation to the Triton, and develop a mini web application to integrate the client in. Stay tuned!</p>
 
     </div>
 
