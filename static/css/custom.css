@@ -11,3 +11,15 @@ figure img {
 figcaption {
   text-align: center;
 }
+
+/* Larger hero photo: fill the whole right column on wide screens */
+@media (min-width: 992px) {
+  #hero .image {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  #hero .image img {
+    width: 100%;
+  }
+}
