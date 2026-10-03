@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="{{ .Language.Lang }}" class="dark">
+
+<head>
+    <script>document.documentElement.classList.add('dark'); localStorage.setItem('pref-theme', 'dark');</script>
+    <style>
+        html,
+        body {
+            background-color: #0a192f !important;
+            color: #ccd6f6 !important;
+        }
+
+        :root {
+            --background-color: #0a192f !important;
+            --background-color-dark: #0a192f !important;
+            --secondary-background-color: #112240 !important;
+            --secondary-background-color-dark: #112240 !important;
+            --text-color: #ccd6f6 !important;
+            --text-color-dark: #ccd6f6 !important;
+            --text-secondary-color: #8892b0 !important;
+            --text-secondary-color-dark: #8892b0 !important;
+            --text-link-color: #64ffda !important;
+            --text-link-color-dark: #64ffda !important;
+            --primary-color: #64ffda !important;
+            --primary-color-dark: #64ffda !important;
+            --secondary-color: #1a2f4e !important;
+            --secondary-color-dark: #1a2f4e !important;
+        }
+    </style>
+    {{- partial "head.html" . -}}
+    {{- block "head" . }} {{- end }}
+
+    <!-- Custom Styles -->
+    {{ if .Site.Params.customCSS }}
+    <link rel="stylesheet" href="{{ (printf "%sstyle.css" (.Site.Params.staticPath | default "")) | relURL }}">
+    {{ end }}
+
+    <title>
+        {{- block "title" . }} {{- end }}
+    </title>
+</head>
+
+<body class="dark">
+    {{- partial "sections/header.html" . -}}
+    <div id="content">
+        {{- block "main" . }}{{- end }}
+    </div>
+    {{- partial "sections/footer/index.html" . -}}
+
+    {{- if (or (eq .Site.Params.UseBootstrapCDN true) (eq .Site.Params.UseBootstrapCDN "js")) -}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
+    {{- else -}}
+    <script src="{{ (printf " %sbootstrap-5/js/bootstrap.bundle.min.js" (.Site.Params.staticPath | default "" )) |
+        relURL }}"></script>
+    {{- end -}}
+
+    {{- partial "scripts.html" . -}}
+
+    <section id="search-content" class="py-2">
+        <div class="container" id="search-results"></div>
+    </section>
+</body>
+
+</html>

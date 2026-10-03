@@ -1,0 +1,42 @@
+{{ if .Site.Params.education.enable | default false }}
+{{- $education := .Site.Language.Params.education | default .Site.Params.education -}}
+<section id="education" class="py-5">
+    <div class="container">
+        <h3 class="text-center mb-4">{{ $education.title | default .Site.Params.education.title | default (i18n
+            "education") }}</h3>
+        <div class="row justify-content-center">
+            <div class="col-sm-12 col-md-10 col-lg-8">
+                {{ range $education.items | default .Site.Params.education.items }}
+                <div class="edu-card mb-4">
+                    <div class="d-flex align-items-start">
+                        {{ with .logo }}
+                        <img class="edu-logo me-3" src="{{ . }}" alt="">
+                        {{ end }}
+                        <div class="flex-grow-1">
+                            <div class="d-flex align-items-start justify-content-between flex-wrap">
+                                <div>
+                                    <span class="edu-title">{{ .title }}</span>
+                                    {{ if .school.url }}
+                                    <a class="edu-school" href="{{ .school.url }}" target="_blank">{{ .school.name
+                                        }}</a>
+                                    {{ else }}
+                                    <span class="edu-school-plain">{{ .school.name }}</span>
+                                    {{ end }}
+                                </div>
+                                <span class="edu-date">{{ .date }}</span>
+                            </div>
+                            {{ with .GPA }}
+                            <div class="edu-gpa mt-1">GPA: <i>{{ . }}</i></div>
+                            {{ end }}
+                            {{ with .content }}
+                            <div class="edu-content mt-2">{{ . | markdownify }}</div>
+                            {{ end }}
+                        </div>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</section>
+{{ end }}

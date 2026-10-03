@@ -1,0 +1,31 @@
+{{ $blogPages := where .Site.RegularPages "Type" "blogs" }}
+{{ if $blogPages }}
+<section id="blog" class="py-5">
+    <div class="container">
+        <h3 class="text-center mb-4">Blog</h3>
+        <div class="row justify-content-center">
+            {{ range first 3 $blogPages }}
+            <div class="col-lg-4 col-md-6 my-3">
+                <div class="card my-3 h-100" style="background-color: transparent;">
+                    {{ if .Params.image }}
+                    <div class="card-head">
+                        <img class="card-img-top" src="{{ .Params.image }}" alt="{{ .Title }}">
+                    </div>
+                    {{ end }}
+                    <div class="card-body bg-transparent p-3">
+                        <h5 class="card-title bg-transparent">{{ .Title | truncate 60 }}</h5>
+                        <div class="card-text bg-transparent secondary-font">
+                            {{ .Summary | truncate 120 | safeHTML }}
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent p-3">
+                        <small class="secondary-font">{{ .Date | time.Format "Jan 2, 2006" }}</small>
+                        <a href="{{ .Permalink }}" class="float-end btn btn-outline-primary btn-sm">Read More</a>
+                    </div>
+                </div>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</section>
+{{ end }}

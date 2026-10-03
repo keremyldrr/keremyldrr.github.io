@@ -1,0 +1,329 @@
+baseURL: "https://www.keremyildirir.com/"
+languageCode: "en-us"
+title: "Kerem Y"
+theme: hugo-profile
+
+outputs:
+  home:
+    - "HTML"
+    - "RSS"
+    - "JSON"
+  page:
+    - "HTML"
+    - "RSS"
+
+enableRobotsTXT: true
+
+# Keep project URLs at /project/<name>/ to match links in the CV
+permalinks:
+  page:
+    projects: /project/:contentbasename/
+
+#services:
+  #googleAnalytics:
+    #id: G-MEASUREMENT_ID
+  #disqus:
+    #shortname: your-disqus-shortname
+
+pagination:
+  pagerSize: 3
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
+Menus:
+  main:
+    - identifier: blog
+      name: Blog
+      title: Blog posts
+      url: /blogs
+      weight: 1
+    #Dropdown menu
+    # - identifier: dropdown
+    #   title: Example dropdown menu
+    #   name: Dropdown
+    #   weight: 3
+    # - identifier: dropdown1
+    #   title: example dropdown 1
+    #   name: example 1
+    #   url: /#
+    #   parent: dropdown
+    #   weight: 1
+    # - identifier: dropdown2
+    #   title: example dropdown 2
+    #   name: example 2
+    #   url: /#
+    #   parent: dropdown
+    #   weight: 2
+
+params:
+  title: "Kerem Yildirir"
+  description: Deep Learning Engineer specializing in Computer Vision and model deployment
+  # staticPath: ""  # The path to serve the static files from
+  favicon: "/fav.png"
+
+  # Whether to serve bootstrap css and js files from CDN or not. Can be set to true, "css" or "js" to choose between
+  # serving both, only the css, or only the js files through the CDN. Any other value will make so that CDN is not used.
+  # Note the lack of "" in true, it should be of boolean type.
+  useBootstrapCDN: false
+
+  # If you want to load dynamically responsive images from Cloudinary
+  # This requires your images to be uploaded + hosted on Cloudinary
+  # Uncomment and change YOUR_CLOUD_NAME to the Cloud Name in your Cloudinary console
+  # cloudinary_cloud_name: "YOUR_CLOUD_NAME"
+
+  # Whether to add mathjax support on all pages. Alternatively, you can opt-in per page by adding `mathjax: true` in the frontmatter.
+  mathjax: false
+
+  # Whether the fade animations on the home page will be enabled
+  animate: true
+
+  theme:
+    disableThemeToggle: true
+    defaultTheme: "dark"
+
+  font:
+    fontSize: 1rem # default: 1rem
+    fontWeight: 400 # default: 400
+    lineHeight: 1.5 # default: 1.5
+    textAlign: left # default: left
+
+  color:
+    textColor: "#ccd6f6"
+    secondaryTextColor: "#8892b0"
+    textLinkColor: "#64ffda"
+    backgroundColor: "#0a192f"
+    secondaryBackgroundColor: "#112240"
+    primaryColor: "#64ffda"
+    secondaryColor: "#1a2f4e"
+
+    darkmode:
+      textColor: "#ccd6f6"
+      secondaryTextColor: "#8892b0"
+      textLinkColor: "#64ffda"
+      backgroundColor: "#0a192f"
+      secondaryBackgroundColor: "#112240"
+      primaryColor: "#64ffda"
+      secondaryColor: "#1a2f4e"
+
+  # If you want to customize the menu, you can change it here
+  navbar:
+    align: ms-auto # Left: ms-auto | center: mx-auto | right: me-auto | Default: ms-auto
+    # brandLogo: "/logo.png" # Logo for the brand | default is the favicon variable
+    showBrandLogo: false # Hide the hugo favicon logo
+    brandName: "Kerem Y" # Brand name for the brand | default is the title variable
+    disableSearch: true
+    # searchPlaceholder: "Search"
+    stickyNavBar:
+      enable : true
+      showOnScrollUp : true
+    enableSeparator: false
+    menus:
+      disableAbout: true
+      disableExperience: false
+      disableEducation: false
+      disableProjects: false
+      disableAchievements: true
+      disableContact: true
+
+  # Hero
+  hero:
+    enable: true
+    intro: ""
+    title: "Kerem Yildirir"
+    subtitle: "Deep Learning / Computer Vision"
+    content: "I work as a Deep Learning Engineer at Ramblr.ai, where we build AI for the physical world. I focus on automated video annotation flows that help teach AI agents to understand real-world processes — from strawberry harvesting to industrial quality control. On my free time, I enjoy tinkering with Linux systems, experimenting with specialty coffee, hiking, playing the drums, and going down random rabbit holes."
+    image: /images/hero.png
+    bottomImage:
+      enable: true
+    # roundImage: true # Make hero image circular | default false
+    button:
+      enable: true
+      name: "Resume"
+      url: /uploads/resume.pdf
+      download: true
+      newPage: false
+    socialLinks:
+      fontAwesomeIcons:
+        - icon: fas fa-envelope
+          url: mailto:keremyldrr@outlook.com
+        - icon: fab fa-linkedin
+          url: https://www.linkedin.com/in/kerem-yildirir-75b070145/
+        - icon: fab fa-github
+          url: https://github.com/keremyldrr
+
+  # About
+  about:
+    enable: false
+
+  # Experience
+  experience:
+    enable: true
+    # title: "Custom Name"
+    items:
+      - company: "Ramblr.ai"
+        companyUrl: "https://ramblr.ai"
+        logo: /images/logos/ramblr.svg
+        jobs:
+          - name: "Deep Learning Engineer"
+            date: "Mar 2024 – Present"
+            badges:
+              - "Python"
+              - "PyTorch"
+              - "Ray"
+              - "VLMs"
+              - "Active Learning"
+              - "Object Detection"
+              - "Tracking"
+              - "Action Recognition"
+            content: |
+              - Built auto-annotation pipelines with state-of-the-art VLMs and vision models, cutting annotation effort by 70–95%
+              - Architected an active learning framework from scratch for continuous model improvement
+              - Trained and deployed detection, tracking and action recognition models with Ray across robotics, automotive and agriculture projects
+
+      - company: "Netlight Consulting"
+        companyUrl: "https://www.netlight.com"
+        logo: /images/logos/netlight.png
+        jobs:
+          - name: "AI Consultant"
+            date: "Dec 2022 – Mar 2024"
+            badges:
+              - "MLOps"
+              - "Python"
+              - "AWS"
+              - "Triton Inference Server"
+              - "Docker"
+            content: |
+              - Built an ML serving pipeline for a leading medical company, turning 3D scan segmentation and classification into automated reports
+              - Cut processing time 12× (120s → 10s per scan); the architecture was adopted internally as a reusable project template
+              - Led 2 internal Triton Inference Server workshops for ~20 engineers
+
+      - company: "Isarsoft"
+        companyUrl: "https://www.isarsoft.com"
+        logo: /images/logos/isarsoft.png
+        jobs:
+          - name: "Machine Learning Engineer"
+            date: "Oct 2021 – Oct 2022"
+            badges:
+              - "Python"
+              - "C++"
+              - "TensorRT"
+              - "Triton Inference Server"
+              - "Object Detection"
+              - "Multi-Object Tracking"
+              - "NVIDIA Jetson"
+            content: |
+              - Trained real-time person detection and multi-object tracking models
+              - Deployed them on NVIDIA Jetson edge devices with Triton Inference Server and TensorRT
+              - Enabled real-time video analytics at the edge
+
+      - company: "FRM II"
+        companyUrl: "https://www.frm2.tum.de"
+        logo: /images/logos/tum.png
+        jobs:
+          - name: "Computer Vision Engineer"
+            date: "Oct 2020 – Oct 2021"
+            badges:
+              - "C++"
+              - "CUDA"
+              - "Python"
+              - "Linux"
+              - "Image Processing"
+            content: |
+              - Ported a Python neutron image segmentation pipeline to C++/CUDA at Germany's largest research neutron source
+              - Achieved a 100× speedup (200ms → 2ms per image)
+              - Made processing terabyte-scale datasets possible for the first time
+
+      - company: "WARP"
+        companyUrl: ""
+        logo: /images/logos/warp.png
+        jobs:
+          - name: "Computer Vision Engineer"
+            date: "Apr 2020 – Sep 2020"
+            badges:
+              - "Python"
+              - "Object Detection"
+              - "Multi Object Tracking"
+              - "ROS"
+            content: |
+              - Built a real-time 3D object detection and tracking pipeline for autonomous driving
+              - Lifted 2D detections into 3D point clouds using sensor fusion
+              - Gave an autonomous vehicle full spatial awareness of its surroundings
+
+  # Education
+  education:
+    enable: true
+    # title: "Custom Name"
+    index: false
+    items:
+      - title: "M.Sc. Informatics"
+        logo: /images/logos/tum.png
+        school:
+          name: "Technical University of Munich"
+          url: "https://www.tum.de"
+        date: "Oct 2019 - Sept 2022"
+        GPA: "1.7"
+        content: |-
+          Thesis: "Probabilistic Object Detection and Reconstruction from a single RGB-D frame"
+
+      - title: "B.Sc. Computer Science and Engineering"
+        logo: /images/logos/sabanci.png
+        school:
+          name: "Sabanci University"
+          url: "https://www.sabanciuniv.edu"
+        date: "Sept 2015 - June 2019"
+        GPA: "1.4"
+        content: |-
+          Thesis: "Plant Disease Classification"
+
+  # Achievements
+  achievements:
+    enable: false
+
+  # projects
+  projects:
+    enable: true
+
+  #Contact
+  contact:
+    enable: false
+
+  footer:
+    recentPosts:
+      enable: false
+    socialNetworks:
+      github: https://github.com/keremyldrr
+      linkedin: https://www.linkedin.com/in/kerem-yildirir-75b070145/
+
+  # List pages like blogs and posts
+  listPages:
+    disableFeaturedImage: false
+
+  # Single pages like blog and post
+  singlePages:
+    socialShare: false
+    readTime:
+      enable: true
+      content: "min read"
+    scrollprogress:
+      enable: true
+    tags:
+      openInNewTab: true
+
+  # For translations
+  terms:
+    read: "Read"
+    toc: "Table Of Contents"
+    copyright: "All rights reserved"
+    pageNotFound: "Page not found"
+    emailText: "Check out this site"
+
+  datesFormat:
+    article: "Jan 2, 2006"
+    articleList: "Jan 2, 2006"
+    articleRecent: "Jan 2, 2006"
+
+  #customScripts: -| # You can add custom scripts which will be added before </body> tag
+  #  <script type="text/javascript"><!-- any script here --></script>

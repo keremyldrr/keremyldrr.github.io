@@ -1,0 +1,54 @@
+{{ if .Site.Params.experience.enable | default false }}
+{{- $experience := .Site.Language.Params.experience | default .Site.Params.experience -}}
+<section id="experience" class="py-5">
+    <div class="container">
+        <h3 class="text-center mb-4">{{ $experience.title | default .Site.Params.experience.title | default (i18n
+            "experience") }}</h3>
+        <div class="row justify-content-center">
+            <div class="col-sm-12 col-md-10 col-lg-8">
+                {{ range $experience.items | default .Site.Params.experience.items }}
+                {{ $company := .company }}
+                {{ $companyUrl := .companyUrl }}
+                {{ $companyLogo := .logo }}
+                {{ range .jobs }}
+                <div class="exp-card mb-4">
+                    <div class="d-flex align-items-start">
+                        {{ with $companyLogo }}
+                        <div class="exp-logo-wrap me-3">
+                            <img class="exp-logo" src="{{ . }}" alt="{{ $company }}">
+                        </div>
+                        {{ end }}
+                        <div class="flex-grow-1">
+                            <div class="d-flex align-items-start justify-content-between flex-wrap">
+                                <div>
+                                    <span class="exp-title">{{ .name }}</span>
+                                    {{ if $companyUrl }}
+                                    <a class="exp-company" href="{{ $companyUrl }}" target="_blank">{{ $company }}</a>
+                                    {{ else }}
+                                    <span class="exp-company-plain">{{ $company }}</span>
+                                    {{ end }}
+                                </div>
+                                <span class="exp-date">{{ .date }}</span>
+                            </div>
+                            {{ with .badges }}
+                            <div class="exp-badges mt-2">
+                                {{ range . }}
+                                <span class="exp-badge">{{ . }}</span>
+                                {{ end }}
+                            </div>
+                            {{ end }}
+                            {{ with .content }}
+                            <div class="exp-content mt-3">
+                                {{ . | markdownify }}
+                            </div>
+                            {{ end }}
+                        </div>
+                    </div>
+                </div>
+                {{ end }}
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</section>
+{{ end }}
