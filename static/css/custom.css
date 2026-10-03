@@ -1,0 +1,13 @@
+/* Center figures and their captions in project and blog pages */
+figure {
+  text-align: center;
+}
+
+figure img {
+  display: block;
+  margin: 0 auto;
+}
+
+figcaption {
+  text-align: center;
+}
