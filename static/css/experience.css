@@ -123,7 +123,7 @@
     margin-top: 2px;
 }
 
-/* Education cards — mirrors experience style */
+/* Education cards: mirrors experience style */
 #education .edu-card {
     background-color: var(--secondary-color);
     border-radius: 1.5rem;

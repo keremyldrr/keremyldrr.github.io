@@ -7,7 +7,7 @@ tags:
   - "triton"
   - "model-deployment"
 image: https://developer.nvidia.com/sites/default/files/akamai/triton.png
-description: "A practical guide to deploying ML models with NVIDIA Triton Inference Server — from saving a pretrained model to running inference via gRPC."
+description: "A practical guide to deploying ML models with NVIDIA Triton Inference Server, from saving a pretrained model to running inference via gRPC."
 ---
 
 With the recent developments in the field of artificial intelligence, a lot of new use cases are emerging. Developing the model is a big challenge itself, but many other challenges present themselves when we want to turn this model into a product. The workflow of a machine learning application typically consists of 3 stages:
