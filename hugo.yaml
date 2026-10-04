@@ -133,7 +133,7 @@ params:
     enable: true
     intro: ""
     title: "Kerem Yildirir"
-    subtitle: "Deep Learning / Computer Vision"
+    subtitle: "Deep Learning / Computer Vision Engineer"
     content: "I work as a Deep Learning Engineer at Ramblr.ai, where we build AI for the physical world. I focus on automated video annotation flows that help teach AI agents to understand real-world processes, from strawberry harvesting to industrial quality control. On my free time, I enjoy tinkering with Linux systems, experimenting with specialty coffee, hiking, playing the drums, and going down random rabbit holes."
     image: /images/hero.png
     bottomImage:
