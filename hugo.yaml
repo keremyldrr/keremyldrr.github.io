@@ -265,6 +265,8 @@ params:
         content: |-
           Thesis: "Probabilistic Object Detection and Reconstruction from a single RGB-D frame"
 
+          Advisor: Prof. Angela Dai
+
       - title: "B.Sc. Computer Science and Engineering"
         logo: /images/logos/sabanci.png
         school:
@@ -274,6 +276,8 @@ params:
         GPA: "1.4"
         content: |-
           Thesis: "Plant Disease Classification"
+
+          Advisor: Prof. Berrin Yanikoglu
 
   # Achievements
   achievements:
