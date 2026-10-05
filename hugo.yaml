@@ -215,8 +215,8 @@ params:
               - "Multi-Object Tracking"
               - "NVIDIA Jetson"
             content: |
-              - Trained real-time person detection models and implemented multi-object tracking
-              - Deployed them on NVIDIA Jetson edge devices with Triton Inference Server and TensorRT for real-time data analytics
+              - Trained person detection models and built a real-time detection and tracking pipeline
+              - Deployed it on NVIDIA Jetson edge devices with Triton Inference Server and TensorRT for real-time data analytics
 
       - company: "FRM II"
         companyUrl: "https://www.frm2.tum.de"
