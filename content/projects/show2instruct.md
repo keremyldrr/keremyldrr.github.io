@@ -20,6 +20,6 @@ toc:
 
 Show2Instruct enhances LLMs with spatial understanding to validate building plans against regulations.
 
-It is an ongoing Ramblr.ai research initiative in collaboration with TU Clausthal, TU Rostock and Neobim.
+It is an ongoing Ramblr.ai research initiative in collaboration with TU Clausthal, University of Rostock and Neobim.
 
 **Project website:** [show2instruct.com](https://www.show2instruct.com/)
