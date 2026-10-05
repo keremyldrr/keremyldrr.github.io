@@ -215,7 +215,7 @@ params:
               - "Multi-Object Tracking"
               - "NVIDIA Jetson"
             content: |
-              - Trained real-time person detection and multi-object tracking models
+              - Trained real-time person detection models and implemented multi-object tracking
               - Deployed them on NVIDIA Jetson edge devices with Triton Inference Server and TensorRT
               - Enabled real-time video analytics at the edge
 
