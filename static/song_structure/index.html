@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Song mapper</title>
+<style>
+  :root{
+    --ink:#0E141B;
+    --panel:#161F29;
+    --line:#26333F;
+    --paper:#EDE9E1;
+    --dim:#7C8B99;
+    --signal:#E8B84B;
+    --live:#6FD1C4;
+  }
+  *{box-sizing:border-box}
+  [hidden]{display:none !important}
+  html,body{height:100%}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--paper);
+    font-family:"Söhne","Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-size:15px;
+    line-height:1.5;
+    display:flex;
+    justify-content:center;
+    padding:24px;
+  }
+  .wrap{
+    width:100%;
+    max-width:880px;
+    display:grid;
+    grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);
+    gap:28px;
+    align-content:start;
+  }
+  @media (max-width:720px){
+    .wrap{grid-template-columns:1fr}
+  }
+
+  /* ---------- counter side ---------- */
+  .counter{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:26px 24px 20px;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+  }
+  .songline{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+  }
+  #songName{
+    flex:1;
+    min-width:0;
+    background:transparent;
+    border:none;
+    border-bottom:1px solid var(--line);
+    color:var(--paper);
+    font:inherit;
+    font-size:17px;
+    padding:2px 0 5px;
+  }
+  #songName:focus{outline:none;border-bottom-color:var(--signal)}
+  #songName::placeholder{color:var(--dim)}
+
+  /* ---------- youtube + count-in ---------- */
+  .yt{display:flex;flex-direction:column;gap:10px}
+  #ytUrl{
+    background:transparent;
+    border:none;
+    border-bottom:1px solid var(--line);
+    color:var(--paper);
+    font:inherit;
+    font-size:14px;
+    padding:2px 0 5px;
+  }
+  #ytUrl:focus{outline:none;border-bottom-color:var(--signal)}
+  #ytUrl::placeholder{color:var(--dim)}
+  #ytUrl.bad{border-bottom-color:#B4545A}
+  .ytframe{
+    position:relative;
+    aspect-ratio:16/9;
+    border:1px solid var(--line);
+    border-radius:8px;
+    overflow:hidden;
+    background:#000;
+  }
+  .ytframe #ytPlayer{position:absolute;inset:0;width:100%;height:100%}
+  .countrow{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:13px;
+    color:var(--dim);
+  }
+  #cBpm{
+    width:44px;
+    background:transparent;
+    border:none;
+    border-bottom:1px dashed var(--line);
+    color:var(--signal);
+    font:inherit;
+    font-size:15px;
+    font-variant-numeric:tabular-nums;
+    text-align:right;
+  }
+  #cBpm:focus{outline:none;border-bottom-color:var(--signal)}
+  #cBpm::placeholder{color:var(--dim)}
+  #cPlay{margin-left:auto;min-width:150px;border-color:var(--live);color:var(--live)}
+  #cPlay:focus-visible{outline:2px solid var(--live);outline-offset:2px}
+
+  .bigcount{
+    display:flex;
+    align-items:baseline;
+    justify-content:center;
+    gap:14px;
+    padding:14px 0 6px;
+  }
+  .bar{
+    font-variant-numeric:tabular-nums;
+    font-size:96px;
+    font-weight:300;
+    letter-spacing:-.03em;
+    line-height:.9;
+    transition:color .09s linear;
+  }
+  .bar.hit{color:var(--live)}
+  .barlabel{color:var(--dim);font-size:14px}
+
+  .beatrow{display:flex;gap:7px;justify-content:center;height:9px}
+  .beatdot{
+    width:9px;height:9px;border-radius:50%;
+    background:var(--line);
+  }
+  .beatdot.on{background:var(--signal)}
+
+  .readout{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    border-top:1px solid var(--line);
+    padding-top:14px;
+    color:var(--dim);
+    font-size:13px;
+  }
+  .readout b{
+    display:block;
+    color:var(--paper);
+    font-size:20px;
+    font-weight:400;
+    font-variant-numeric:tabular-nums;
+  }
+
+  .keys{
+    display:grid;
+    gap:7px;
+    font-size:13px;
+    color:var(--dim);
+  }
+  .keys div{display:flex;gap:10px;align-items:center}
+  kbd{
+    background:#0A0F14;
+    border:1px solid var(--line);
+    border-bottom-width:2px;
+    border-radius:4px;
+    padding:2px 7px;
+    font-family:inherit;
+    font-size:12px;
+    color:var(--paper);
+    min-width:64px;
+    text-align:center;
+  }
+
+  .pads{
+    display:flex;
+    gap:9px;
+    touch-action:manipulation;
+  }
+  .padcol{display:flex;flex-direction:column;gap:9px;width:104px;flex:none}
+  .pad{
+    background:#1D2833;
+    border:1px solid var(--line);
+    border-radius:9px;
+    color:var(--paper);
+    font:inherit;
+    font-size:15px;
+    padding:13px 10px;
+    cursor:pointer;
+    -webkit-user-select:none;
+    user-select:none;
+    -webkit-tap-highlight-color:transparent;
+    flex:1;
+  }
+  .pad.big{
+    font-size:20px;
+    min-height:132px;
+    border-color:var(--live);
+    color:var(--live);
+  }
+  .pad.quiet{color:var(--dim);font-size:14px}
+  .pad:active{background:#2A3844}
+  .pad.big:active{background:#1F3B3B}
+  .pad:focus-visible{outline:2px solid var(--live);outline-offset:2px}
+
+  @media (max-width:720px){
+    body{padding:14px}
+    .wrap{gap:18px}
+    .counter{padding:18px 16px 16px}
+    .bar{font-size:74px}
+    .keys{display:none}
+    #sections{max-height:none}
+  }
+
+  .tapmode{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:13px;
+    color:var(--dim);
+  }
+  .tapmode button{
+    background:transparent;
+    border:1px solid var(--line);
+    color:var(--dim);
+    font:inherit;
+    font-size:13px;
+    padding:3px 10px;
+    border-radius:5px;
+    cursor:pointer;
+  }
+  .tapmode button[aria-pressed="true"]{
+    border-color:var(--signal);
+    color:var(--signal);
+  }
+  .tapmode button:focus-visible,
+  .textbtn:focus-visible,
+  .sect input:focus-visible{outline:2px solid var(--live);outline-offset:2px}
+
+  /* ---------- map side ---------- */
+  .map{display:flex;flex-direction:column;gap:14px;min-width:0}
+  .maphead{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    border-bottom:1px solid var(--line);
+    padding-bottom:8px;
+  }
+  .maphead span{color:var(--dim);font-size:13px}
+  #sections{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+    max-height:44vh;
+    overflow-y:auto;
+    padding-right:4px;
+  }
+  .sect{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:7px 10px;
+    border-radius:6px;
+    background:var(--panel);
+    border:1px solid var(--line);
+  }
+  .sect.current{border-color:var(--live)}
+  .sect input{
+    flex:1;
+    min-width:0;
+    background:transparent;
+    border:none;
+    color:var(--paper);
+    font:inherit;
+  }
+  .sect input::placeholder{color:var(--dim)}
+  .sect .n{
+    font-variant-numeric:tabular-nums;
+    color:var(--signal);
+    font-size:19px;
+    min-width:34px;
+    text-align:right;
+  }
+  .sect .n small{color:var(--dim);font-size:11px;margin-left:2px}
+  .sect .n{display:flex;align-items:baseline;justify-content:flex-end;min-width:56px}
+  .barin{
+    width:34px;
+    background:transparent;
+    border:none;
+    border-bottom:1px dashed var(--line);
+    color:var(--signal);
+    font:inherit;
+    font-size:19px;
+    font-variant-numeric:tabular-nums;
+    text-align:right;
+    padding:0 0 1px;
+  }
+  .barin:focus{outline:none;border-bottom-color:var(--signal)}
+  .empty{color:var(--dim);font-size:14px;padding:6px 0}
+
+  .sect{flex-wrap:wrap}
+  .sectnote{
+    flex-basis:100%;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding-left:44px;
+  }
+  .sectnote input{
+    font-size:13px;
+    color:var(--dim);
+  }
+  .sectnote input:focus{color:var(--paper)}
+  .marks{display:flex;gap:5px;flex-wrap:wrap}
+  .mark{
+    font-size:11px;
+    font-variant-numeric:tabular-nums;
+    color:var(--ink);
+    background:var(--signal);
+    border-radius:3px;
+    padding:1px 6px;
+    cursor:pointer;
+    border:none;
+    font-family:inherit;
+  }
+  .mark:hover{background:#F2CC6B}
+
+  .summary{
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:12px 14px;
+    background:var(--panel);
+    font-size:14px;
+    line-height:1.6;
+    word-break:break-word;
+  }
+  .summary em{color:var(--dim);font-style:normal}
+
+  .actions{display:flex;flex-wrap:wrap;gap:8px}
+  .textbtn{
+    background:transparent;
+    border:1px solid var(--line);
+    color:var(--paper);
+    font:inherit;
+    font-size:13px;
+    padding:6px 12px;
+    border-radius:6px;
+    cursor:pointer;
+  }
+  .textbtn:hover{border-color:var(--dim)}
+  .textbtn.warn:hover{border-color:#B4545A;color:#E68A8F}
+
+  .saved{
+    border-top:1px solid var(--line);
+    padding-top:12px;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+  .saved h2{margin:0;font-size:13px;font-weight:400;color:var(--dim)}
+  .savedrow{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:13px;
+  }
+  .savedrow button{
+    background:none;border:none;color:var(--paper);
+    font:inherit;text-align:left;cursor:pointer;padding:2px 0;flex:1;
+    text-decoration:underline;text-decoration-color:var(--line);
+    text-underline-offset:3px;
+  }
+  .savedrow button:hover{text-decoration-color:var(--signal)}
+  .savedrow .del{
+    flex:none;color:var(--dim);text-decoration:none;font-size:12px;
+  }
+  .savedrow .del:hover{color:#E68A8F}
+  .note{color:var(--dim);font-size:12px}
+
+  /* ---------- print sheet ---------- */
+  #sheet{display:none}
+  @media print{
+    body{background:#fff;color:#000;padding:0;display:block}
+    .wrap{display:none !important}
+    #sheet{display:block;padding:0}
+    #sheet h1{
+      font-size:26pt;font-weight:600;margin:0 0 2pt;letter-spacing:-.01em;
+    }
+    #sheet .meta{font-size:11pt;color:#555;margin:0 0 18pt}
+    #sheet table{border-collapse:collapse;width:100%;font-size:13pt}
+    #sheet td{
+      padding:7pt 6pt;border-bottom:1px solid #ccc;vertical-align:baseline;
+    }
+    #sheet td.bars{
+      width:52pt;text-align:right;font-variant-numeric:tabular-nums;
+      font-weight:600;font-size:16pt;white-space:nowrap;
+    }
+    #sheet td.bars span{font-size:9pt;font-weight:400;color:#666;margin-left:3pt}
+    #sheet td.nm{font-weight:600}
+    #sheet td.det{color:#444;font-size:11pt;text-align:right}
+    #sheet .form{
+      margin-top:20pt;padding-top:10pt;border-top:2px solid #000;
+      font-size:13pt;line-height:1.55;
+    }
+    #sheet .form b{display:block;font-size:9pt;color:#666;font-weight:400;margin-bottom:3pt}
+    @page{margin:16mm}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <section class="counter">
+    <div class="songline">
+      <input id="songName" placeholder="Song name" autocomplete="off">
+    </div>
+
+    <div class="yt">
+      <input id="ytUrl" placeholder="Paste a YouTube link" autocomplete="off" aria-label="YouTube link">
+      <div class="ytframe" id="ytBox" hidden><div id="ytPlayer"></div></div>
+      <div class="countrow" id="countRow" hidden>
+        <span>Count-in at</span>
+        <input id="cBpm" inputmode="numeric" placeholder="bpm" aria-label="Count-in tempo">
+        <span>bpm</span>
+        <button class="textbtn" id="cPlay">Play with count-in</button>
+      </div>
+    </div>
+
+    <div>
+      <div class="bigcount">
+        <span class="bar" id="barNum">0</span>
+        <span class="barlabel">bars in this section</span>
+      </div>
+      <div class="beatrow" id="beatRow"></div>
+    </div>
+
+    <div class="readout">
+      <div>Tempo<b id="bpm">-</b></div>
+      <div>Total bars<b id="total">0</b></div>
+      <div>Sections<b id="sectCount">0</b></div>
+    </div>
+
+    <div class="tapmode">
+      <span>I tap on</span>
+      <button id="modeBar" aria-pressed="true">every bar</button>
+      <button id="modeBeat" aria-pressed="false">every beat</button>
+    </div>
+
+    <div class="pads">
+      <button class="pad big" id="padBar">Bar</button>
+      <div class="padcol">
+        <button class="pad" id="padSection">Section</button>
+        <button class="pad" id="padFill">Fill</button>
+        <button class="pad quiet" id="padUndo">Undo</button>
+      </div>
+    </div>
+
+    <div class="keys">
+      <div><kbd>Space</kbd> count a bar</div>
+      <div><kbd>Enter</kbd> section changes here</div>
+      <div><kbd>F</kbd> fill on this bar</div>
+      <div><kbd>Backspace</kbd> undo last tap</div>
+      <div><kbd>Esc</kbd> start the song over</div>
+    </div>
+  </section>
+
+  <section class="map">
+    <div class="maphead">
+      <strong>The map</strong>
+      <span id="hint">Tap space on each downbeat</span>
+    </div>
+
+    <div id="sections"><p class="empty">Nothing counted yet.</p></div>
+
+    <div class="summary" id="summary"><em>Your form sentence appears here once you've marked a section.</em></div>
+
+    <div class="actions">
+      <button class="textbtn" id="saveBtn">Save this song</button>
+      <button class="textbtn" id="copyBtn">Copy as text</button>
+      <button class="textbtn" id="printBtn">Save as PDF</button>
+      <button class="textbtn warn" id="clearBtn">Clear</button>
+    </div>
+
+    <div class="saved">
+      <h2>Saved songs</h2>
+      <div id="savedList"><p class="note">None yet.</p></div>
+    </div>
+  </section>
+
+</div>
+
+
+<div id="sheet"></div>
+
+<script>
+(function(){
+  "use strict";
+
+  var BEATS = 4;
+  var tapPerBeat = false;
+  var beatIdx = 0;
+  var bars = 0;
+  var sections = [];      // {name, bars, marks:[barNumber], note}
+  var tapTimes = [];
+  var pendingName = "";
+  var pendingMarks = [];
+  var pendingNote = "";
+  var lastEnter = -1e9;
+
+  var $ = function(id){ return document.getElementById(id); };
+  var barNum = $("barNum"), beatRow = $("beatRow"), bpmEl = $("bpm"),
+      totalEl = $("total"), sectCountEl = $("sectCount"),
+      sectionsEl = $("sections"), summaryEl = $("summary"),
+      songName = $("songName"), savedList = $("savedList"), hint = $("hint");
+
+  for (var i=0;i<BEATS;i++){
+    var d = document.createElement("span");
+    d.className = "beatdot";
+    beatRow.appendChild(d);
+  }
+  var dots = beatRow.children;
+
+  function paintBeats(){
+    for (var i=0;i<dots.length;i++){
+      dots[i].className = "beatdot" + (tapPerBeat && i < beatIdx ? " on" : "");
+    }
+  }
+
+  function tempo(){
+    if (tapTimes.length < 3) return null;
+    var recent = tapTimes.slice(-9);
+    var gaps = [];
+    for (var i=1;i<recent.length;i++) gaps.push(recent[i]-recent[i-1]);
+    gaps.sort(function(a,b){return a-b;});
+    var mid = gaps[Math.floor(gaps.length/2)];     // median resists a fumbled tap
+    if (!mid) return null;
+    var perBeat = tapPerBeat ? mid : mid / BEATS;
+    var v = Math.round(60000 / perBeat);
+    return (v > 20 && v < 300) ? v : null;
+  }
+
+  function totalBars(){
+    var t = bars;
+    for (var i=0;i<sections.length;i++) t += sections[i].bars;
+    return t;
+  }
+
+  function flash(){
+    barNum.classList.add("hit");
+    setTimeout(function(){ barNum.classList.remove("hit"); }, 90);
+  }
+
+  function render(){
+    barNum.textContent = bars;
+    totalEl.textContent = totalBars();
+    sectCountEl.textContent = sections.length;
+    var t = tempo();
+    bpmEl.textContent = t ? t : "-";
+    if (cBpm) cBpm.placeholder = t ? String(t) : "bpm";
+    paintBeats();
+
+    // section list
+    sectionsEl.innerHTML = "";
+    if (!sections.length && !bars){
+      var p = document.createElement("p");
+      p.className = "empty";
+      p.textContent = "Nothing counted yet.";
+      sectionsEl.appendChild(p);
+    } else {
+      sections.forEach(function(s, idx){
+        sectionsEl.appendChild(row(s, idx, false));
+      });
+      if (bars) sectionsEl.appendChild(
+        row({bars:bars, name:pendingName, marks:pendingMarks, note:pendingNote}, -1, true)
+      );
+      sectionsEl.scrollTop = sectionsEl.scrollHeight;
+    }
+    renderSummary();
+  }
+
+  function row(s, idx, current){
+    var el = document.createElement("div");
+    el.className = "sect" + (current ? " current" : "");
+
+    var num;
+    if (current){
+      num = document.createElement("span");
+      num.className = "n";
+      num.innerHTML = s.bars + '<small>bars</small>';
+    } else {
+      num = document.createElement("span");
+      num.className = "n";
+      var bin = document.createElement("input");
+      bin.className = "barin";
+      bin.value = s.bars;
+      bin.inputMode = "numeric";
+      bin.setAttribute("aria-label", "Bars in this section");
+      bin.addEventListener("input", function(){
+        var v = parseInt(bin.value, 10);
+        sections[idx].bars = isNaN(v) ? 0 : Math.max(0, v);
+        totalEl.textContent = totalBars();
+        renderSummary();
+      });
+      bin.addEventListener("keydown", function(e){ e.stopPropagation(); });
+      num.appendChild(bin);
+      var lbl = document.createElement("small");
+      lbl.textContent = "bars";
+      num.appendChild(lbl);
+    }
+
+    var inp = document.createElement("input");
+    inp.value = s.name || "";
+    inp.placeholder = current ? "counting now…" : "name this section";
+    inp.setAttribute("aria-label", "Section name");
+    inp.addEventListener("input", function(){
+      if (idx === -1) pendingName = inp.value;
+      else sections[idx].name = inp.value;
+      renderSummary();
+    });
+    inp.addEventListener("keydown", function(e){ e.stopPropagation(); });
+
+    el.appendChild(num);
+    el.appendChild(inp);
+
+    var marks = s.marks || [];
+    var note = document.createElement("div");
+    note.className = "sectnote";
+
+    if (marks.length){
+      var chips = document.createElement("div");
+      chips.className = "marks";
+      marks.forEach(function(m, mi){
+        var c = document.createElement("button");
+        c.className = "mark";
+        c.textContent = "fill bar " + m;
+        c.title = "Click to remove";
+        c.addEventListener("click", function(){
+          var arr = (idx === -1) ? pendingMarks : sections[idx].marks;
+          arr.splice(mi, 1);
+          render();
+        });
+        chips.appendChild(c);
+      });
+      note.appendChild(chips);
+    }
+
+    var ninp = document.createElement("input");
+    ninp.value = s.note || "";
+    ninp.placeholder = "notes: groove, hits, anything";
+    ninp.setAttribute("aria-label", "Section notes");
+    ninp.addEventListener("input", function(){
+      if (idx === -1) pendingNote = ninp.value;
+      else sections[idx].note = ninp.value;
+    });
+    ninp.addEventListener("keydown", function(e){ e.stopPropagation(); });
+    note.appendChild(ninp);
+
+    el.appendChild(note);
+    return el;
+  }
+
+  function formSentence(){
+    var all = sections.slice();
+    if (bars) all.push({name:pendingName, bars:bars});
+    if (!all.length) return "";
+    return all.map(function(s){
+      return s.bars + (s.name ? " " + s.name.trim().toLowerCase() : "");
+    }).join(", ");
+  }
+
+  function renderSummary(){
+    var s = formSentence();
+    summaryEl.innerHTML = s
+      ? s.charAt(0).toUpperCase() + s.slice(1) + "."
+      : "<em>Your form sentence appears here once you've marked a section.</em>";
+  }
+
+  function asText(){
+    var lines = [];
+    lines.push(songName.value.trim() || "Untitled");
+    var t = tempo();
+    if (t) lines.push("about " + t + " bpm");
+    lines.push("");
+    var all = sections.slice();
+    if (bars) all.push({name:pendingName, bars:bars, marks:pendingMarks, note:pendingNote});
+    all.forEach(function(s){
+      var line = (s.name ? s.name.trim() : "?") + ": " + s.bars + " bars";
+      var extra = [];
+      if (s.marks && s.marks.length){
+        extra.push("fill: bar " + s.marks.join(", "));
+      }
+      if (s.note && s.note.trim()) extra.push(s.note.trim());
+      if (extra.length) line += "  (" + extra.join("; ") + ")";
+      lines.push(line);
+    });
+    lines.push("");
+    lines.push(formSentence());
+    return lines.join("\n");
+  }
+
+  // ---------- actions (shared by keys and touch pads) ----------
+  function actTap(){
+    var now = performance.now();
+    if (now - lastEnter < 180) return;   // Enter already counted this downbeat
+    tapTimes.push(now);
+    if (tapPerBeat){
+      beatIdx++;
+      if (beatIdx >= BEATS){ beatIdx = 0; bars++; flash(); }
+    } else {
+      bars++; flash();
+    }
+    render();
+  }
+
+  function actFill(){
+    var at = bars || 1;
+    if (pendingMarks.indexOf(at) === -1) pendingMarks.push(at);
+    render();
+  }
+
+  function actSection(){
+    sections.push({name:pendingName, bars:bars, marks:pendingMarks, note:pendingNote});
+    pendingName = "";
+    pendingMarks = [];
+    pendingNote = "";
+    bars = 1;                      // this press IS the downbeat of bar 1
+    beatIdx = 0;
+    lastEnter = performance.now();
+    tapTimes.push(lastEnter);
+    flash();
+    render();
+  }
+
+  function actUndo(){
+    if (bars > 0){
+      if (tapPerBeat && beatIdx > 0){ beatIdx--; }
+      else { bars--; beatIdx = 0; }
+      tapTimes.pop();
+    } else if (sections.length){
+      var last = sections.pop();
+      bars = last.bars;
+      pendingName = last.name;
+      pendingMarks = last.marks || [];
+      pendingNote = last.note || "";
+    }
+    render();
+  }
+
+  // ---------- keys ----------
+  document.addEventListener("keydown", function(e){
+    if (e.target === songName && e.key !== "Escape") return;
+    if (e.target.tagName === "INPUT" && e.key !== "Escape") return;
+
+    if (e.code === "Space"){ e.preventDefault(); actTap(); }
+    else if (e.key === "f" || e.key === "F"){ e.preventDefault(); actFill(); }
+    else if (e.key === "Enter"){ e.preventDefault(); actSection(); }
+    else if (e.key === "Backspace"){ e.preventDefault(); actUndo(); }
+    else if (e.key === "Escape"){
+      e.preventDefault();
+      if (songName === document.activeElement) songName.blur();
+      resetCount();
+    }
+  });
+
+  // ---------- touch pads ----------
+  function pad(id, fn){
+    var el = $(id);
+    if (!el) return;
+    el.addEventListener("pointerdown", function(e){
+      e.preventDefault();
+      fn();
+      if (navigator.vibrate) navigator.vibrate(8);
+    });
+    el.addEventListener("contextmenu", function(e){ e.preventDefault(); });
+  }
+  pad("padBar", actTap);
+  pad("padSection", actSection);
+  pad("padFill", actFill);
+  pad("padUndo", actUndo);
+
+  function resetCount(){
+    bars = 0; beatIdx = 0; sections = []; tapTimes = [];
+    pendingName = ""; pendingMarks = []; pendingNote = "";
+    render();
+  }
+
+  // ---------- tap mode ----------
+  function setMode(perBeat){
+    tapPerBeat = perBeat;
+    beatIdx = 0;
+    tapTimes = [];
+    $("modeBar").setAttribute("aria-pressed", String(!perBeat));
+    $("modeBeat").setAttribute("aria-pressed", String(perBeat));
+    hint.textContent = perBeat
+      ? "Tap space on every beat"
+      : "Tap space on each downbeat";
+    render();
+  }
+  $("modeBar").addEventListener("click", function(){ setMode(false); this.blur(); });
+  $("modeBeat").addEventListener("click", function(){ setMode(true); this.blur(); });
+
+  // ---------- youtube + count-in ----------
+  var ytUrl = $("ytUrl"), ytBox = $("ytBox"), countRow = $("countRow"),
+      cBpm = $("cBpm"), cPlay = $("cPlay");
+  var player = null, playerReady = false, apiLoading = false, wantId = null;
+  var audio = null, counting = false, priming = false, countTimers = [];
+  var PLAY_LABEL = "Play with count-in";
+
+  function videoId(url){
+    url = String(url || "").trim();
+    var m = url.match(/(?:youtu\.be\/|youtube(?:-nocookie)?\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|live\/|v\/))([\w-]{11})/);
+    if (m) return m[1];
+    return /^[\w-]{11}$/.test(url) ? url : null;
+  }
+
+  function makePlayer(){
+    player = new YT.Player("ytPlayer", {
+      videoId: wantId,
+      playerVars: {playsinline: 1, rel: 0},
+      events: {
+        onReady: function(){
+          playerReady = true;
+          var d = player.getVideoData && player.getVideoData();
+          if (d && d.video_id !== wantId) player.cueVideoById(wantId);
+        },
+        onStateChange: onPlayerState
+      }
+    });
+  }
+
+  function loadVideo(){
+    var id = videoId(ytUrl.value);
+    ytUrl.classList.toggle("bad", !id && !!ytUrl.value.trim());
+    if (!id) return;
+    stopCount();
+    wantId = id;
+    ytBox.hidden = false;
+    countRow.hidden = false;
+    if (playerReady){ player.cueVideoById(id); return; }
+    if (player) return;                       // onReady will cue wantId
+    if (window.YT && YT.Player){ makePlayer(); return; }
+    if (apiLoading) return;
+    apiLoading = true;
+    window.onYouTubeIframeAPIReady = makePlayer;
+    var s = document.createElement("script");
+    s.src = "https://www.youtube.com/iframe_api";
+    document.head.appendChild(s);
+  }
+
+  ytUrl.addEventListener("change", loadVideo);
+  ytUrl.addEventListener("paste", function(){ setTimeout(loadVideo, 0); });
+  ytUrl.addEventListener("keydown", function(e){
+    e.stopPropagation();
+    if (e.key === "Enter"){ e.preventDefault(); loadVideo(); ytUrl.blur(); }
+  });
+  cBpm.addEventListener("keydown", function(e){ e.stopPropagation(); });
+
+  function onPlayerState(e){
+    var S = YT.PlayerState;
+    // Priming: a muted play started inside the click so the video buffers
+    // (and mobile browsers allow sound later). Hold it at the start until
+    // the count-in finishes.
+    if (priming && e.data === S.PLAYING){
+      priming = false;
+      player.pauseVideo();
+      player.seekTo(0, true);
+      player.unMute();
+      return;
+    }
+    if (counting) return;
+    cPlay.textContent = (e.data === S.PLAYING || e.data === S.BUFFERING) ? "Pause" : PLAY_LABEL;
+  }
+
+  function tick(time, accent){
+    var o = audio.createOscillator(), g = audio.createGain();
+    o.frequency.value = accent ? 1600 : 1000;
+    g.gain.setValueAtTime(0.0001, time);
+    g.gain.exponentialRampToValueAtTime(accent ? 0.6 : 0.35, time + 0.002);
+    g.gain.exponentialRampToValueAtTime(0.0001, time + 0.05);
+    o.connect(g);
+    g.connect(audio.destination);
+    o.start(time);
+    o.stop(time + 0.06);
+  }
+
+  function showCountBeat(i){
+    for (var j = 0; j < dots.length; j++){
+      dots[j].className = "beatdot" + (j <= i ? " on" : "");
+    }
+    cPlay.textContent = String(i + 1);
+  }
+
+  function stopCount(){
+    countTimers.forEach(clearTimeout);
+    countTimers = [];
+    if (counting){
+      counting = false;
+      if (priming){ priming = false; player.pauseVideo(); player.seekTo(0, true); player.unMute(); }
+      paintBeats();
+    }
+    cPlay.textContent = PLAY_LABEL;
+  }
+
+  function startCount(){
+    var bpm = parseInt(cBpm.value, 10) || tempo();
+    if (!bpm || bpm < 20 || bpm > 300){
+      cPlay.textContent = "Set a tempo first";
+      setTimeout(function(){ if (!counting) cPlay.textContent = PLAY_LABEL; }, 1400);
+      return;
+    }
+    if (!playerReady){
+      cPlay.textContent = "Video loading…";
+      setTimeout(function(){ if (!counting) cPlay.textContent = PLAY_LABEL; }, 1400);
+      return;
+    }
+
+    audio = audio || new (window.AudioContext || window.webkitAudioContext)();
+    audio.resume();
+
+    var st = player.getPlayerState();
+    if (st === YT.PlayerState.UNSTARTED || st === YT.PlayerState.CUED){
+      priming = true;
+      player.mute();
+      player.playVideo();
+    }
+
+    counting = true;
+    var beat = 60 / bpm;
+    var t0 = audio.currentTime + 0.1;
+    var lead = 100;                            // ms until the first click
+    for (var i = 0; i < BEATS; i++){
+      tick(t0 + i * beat, i === 0);
+      countTimers.push(setTimeout(showCountBeat.bind(null, i), lead + i * beat * 1000));
+    }
+    countTimers.push(setTimeout(function(){
+      counting = false;
+      countTimers = [];
+      if (priming){ priming = false; player.seekTo(0, true); }
+      player.unMute();
+      player.playVideo();
+      paintBeats();
+      cPlay.textContent = "Pause";
+    }, lead + BEATS * beat * 1000));
+  }
+
+  cPlay.addEventListener("click", function(){
+    this.blur();                               // keep Space for counting bars
+    if (counting){ stopCount(); return; }
+    if (playerReady){
+      var st = player.getPlayerState();
+      if (st === YT.PlayerState.PLAYING || st === YT.PlayerState.BUFFERING){
+        player.pauseVideo();
+        return;
+      }
+    }
+    startCount();
+  });
+
+  // ---------- storage ----------
+  var KEY = "songmaps";
+
+  async function loadAll(){
+    try{
+      var r = localStorage.getItem(KEY);
+      return r ? JSON.parse(r) : [];
+    }catch(err){
+      return [];
+    }
+  }
+
+  async function saveAll(list){
+    try{
+      localStorage.setItem(KEY, JSON.stringify(list));
+      return true;
+    }catch(err){
+      return false;
+    }
+  }
+
+  async function paintSaved(){
+    var list = await loadAll();
+    savedList.innerHTML = "";
+    if (!list.length){
+      var p = document.createElement("p");
+      p.className = "note";
+      p.textContent = "None yet.";
+      savedList.appendChild(p);
+      return;
+    }
+    list.forEach(function(song, i){
+      var row = document.createElement("div");
+      row.className = "savedrow";
+
+      var open = document.createElement("button");
+      open.textContent = song.name + " · " + song.sections.length + " sections";
+      open.addEventListener("click", function(){
+        songName.value = song.name;
+        sections = song.sections.map(function(s){
+          return {name:s.name, bars:s.bars,
+                  marks:(s.marks || []).slice(), note:s.note || ""};
+        });
+        bars = 0; beatIdx = 0; tapTimes = [];
+        pendingName = ""; pendingMarks = []; pendingNote = "";
+        cBpm.value = song.bpm || "";
+        if (song.url){ ytUrl.value = song.url; loadVideo(); }
+        render();
+      });
+
+      var del = document.createElement("button");
+      del.className = "del";
+      del.textContent = "remove";
+      del.addEventListener("click", async function(){
+        var cur = await loadAll();
+        cur.splice(i,1);
+        await saveAll(cur);
+        paintSaved();
+      });
+
+      row.appendChild(open);
+      row.appendChild(del);
+      savedList.appendChild(row);
+    });
+  }
+
+  $("saveBtn").addEventListener("click", async function(){
+    var all = sections.slice();
+    if (bars) all.push({name:pendingName, bars:bars, marks:pendingMarks, note:pendingNote});
+    if (!all.length){ this.textContent = "Count something first"; var b=this;
+      setTimeout(function(){ b.textContent = "Save this song"; }, 1400); return; }
+
+    var list = await loadAll();
+    var name = songName.value.trim() || "Untitled";
+    var entry = {name:name, sections:all, bpm:parseInt(cBpm.value, 10) || tempo(),
+                 url:videoId(ytUrl.value) ? ytUrl.value.trim() : ""};
+    var at = -1;
+    for (var i=0;i<list.length;i++) if (list[i].name === name) at = i;
+    if (at >= 0) list[at] = entry; else list.push(entry);
+
+    var ok = await saveAll(list);
+    this.textContent = ok ? "Saved" : "Couldn't save";
+    var btn = this;
+    setTimeout(function(){ btn.textContent = "Save this song"; }, 1400);
+    paintSaved();
+  });
+
+  $("copyBtn").addEventListener("click", function(){
+    var btn = this;
+    var text = asText();
+    var done = function(msg){
+      btn.textContent = msg;
+      setTimeout(function(){ btn.textContent = "Copy as text"; }, 1400);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){ done("Copied"); },
+                                               function(){ done("Copy failed"); });
+    } else {
+      done("Copy failed");
+    }
+  });
+
+
+  // ---------- print sheet ----------
+  function buildSheet(){
+    var all = sections.slice();
+    if (bars) all.push({name:pendingName, bars:bars, marks:pendingMarks, note:pendingNote});
+    var sheet = $("sheet");
+    sheet.innerHTML = "";
+
+    var h = document.createElement("h1");
+    h.textContent = songName.value.trim() || "Untitled";
+    sheet.appendChild(h);
+
+    var t = tempo();
+    var meta = document.createElement("p");
+    meta.className = "meta";
+    var bits = [];
+    if (t) bits.push("about " + t + " bpm");
+    bits.push(totalBars() + " bars");
+    bits.push(all.length + " sections");
+    meta.textContent = bits.join("  \u00b7  ");
+    sheet.appendChild(meta);
+
+    var tbl = document.createElement("table");
+    all.forEach(function(s){
+      var tr = document.createElement("tr");
+
+      var tdB = document.createElement("td");
+      tdB.className = "bars";
+      tdB.innerHTML = s.bars + "<span>bars</span>";
+
+      var tdN = document.createElement("td");
+      tdN.className = "nm";
+      tdN.textContent = s.name ? s.name.trim() : "-";
+
+      var tdD = document.createElement("td");
+      tdD.className = "det";
+      var det = [];
+      if (s.marks && s.marks.length) det.push("fill: bar " + s.marks.join(", "));
+      if (s.note && s.note.trim()) det.push(s.note.trim());
+      tdD.textContent = det.join("  \u00b7  ");
+
+      tr.appendChild(tdB); tr.appendChild(tdN); tr.appendChild(tdD);
+      tbl.appendChild(tr);
+    });
+    sheet.appendChild(tbl);
+
+    var f = formSentence();
+    if (f){
+      var box = document.createElement("div");
+      box.className = "form";
+      var lab = document.createElement("b");
+      lab.textContent = "Say it through";
+      box.appendChild(lab);
+      box.appendChild(document.createTextNode(f.charAt(0).toUpperCase() + f.slice(1) + "."));
+      sheet.appendChild(box);
+    }
+  }
+
+  $("printBtn").addEventListener("click", function(){
+    if (!sections.length && !bars){
+      var b = this;
+      b.textContent = "Count something first";
+      setTimeout(function(){ b.textContent = "Save as PDF"; }, 1400);
+      return;
+    }
+    buildSheet();
+    window.print();
+  });
+
+  $("clearBtn").addEventListener("click", function(){
+    resetCount();
+    songName.value = "";
+    songName.focus();
+  });
+
+  render();
+  setMode(false);
+  paintSaved();
+})();
+</script>
+</body>
+</html>

@@ -91,7 +91,7 @@
 </script>
 
 {{ if or (.Site.Params.singlePages.readTime.enable | default true) (.Params.enableReadingTime) }}
-<script src="{{ (printf " %sjs/readingTime.js" (.Site.Params.staticPath | default "" )) | relURL }}"></script>
+<script src="{{ (printf "%sjs/readingTime.js" (.Site.Params.staticPath | default "" )) | relURL }}"></script>
 {{end}}
 
 {{ end }}
