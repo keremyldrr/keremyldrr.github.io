@@ -301,6 +301,8 @@
     padding:0 0 1px;
   }
   .barin:focus{outline:none;border-bottom-color:var(--signal)}
+  .barin{appearance:textfield}
+  .barin::-webkit-inner-spin-button{appearance:none}
   .empty{color:var(--dim);font-size:14px;padding:6px 0}
 
   .sect{flex-wrap:wrap}
@@ -316,19 +318,12 @@
     color:var(--dim);
   }
   .sectnote input:focus{color:var(--paper)}
-  .marks{display:flex;gap:5px;flex-wrap:wrap}
-  .mark{
-    font-size:11px;
-    font-variant-numeric:tabular-nums;
-    color:var(--ink);
-    background:var(--signal);
-    border-radius:3px;
-    padding:1px 6px;
-    cursor:pointer;
-    border:none;
-    font-family:inherit;
-  }
-  .mark:hover{background:#F2CC6B}
+  .sectfills{display:flex;align-items:center;gap:8px;flex-basis:100%;font-size:13px;color:var(--dim)}
+  .sectfills input{border-bottom:1px dashed var(--line);font-size:13px}
+  .sectfills input:invalid{border-bottom-color:#E68A8F}
+  .secttools{display:flex;flex-wrap:wrap;gap:6px;flex-basis:100%}
+  .secttools .textbtn{padding:3px 7px}
+  .textbtn:disabled{opacity:.4;cursor:default}
 
   .summary{
     border:1px solid var(--line);
@@ -480,6 +475,7 @@
     <div class="summary" id="summary"><em>Your form sentence appears here once you've marked a section.</em></div>
 
     <div class="actions">
+      <button class="textbtn" id="addBtn">Add section</button>
       <button class="textbtn" id="saveBtn">Save this song</button>
       <button class="textbtn" id="copyBtn">Copy as text</button>
       <button class="textbtn" id="printBtn">Save as PDF</button>
@@ -550,6 +546,36 @@
     return t;
   }
 
+  function mapSections(){
+    var all = sections.slice();
+    if (bars) all.push({name:pendingName, bars:bars, marks:pendingMarks, note:pendingNote});
+    return all;
+  }
+
+  function editMap(change){
+    if (!validMap()) return;
+    var all = mapSections();
+    var live = bars > 0;
+    change(all);
+    sections = all;
+    bars = 0; beatIdx = 0;
+    pendingName = ""; pendingMarks = []; pendingNote = "";
+    if (live && sections.length && sections[sections.length - 1].bars > 0){
+      var last = sections.pop();
+      bars = last.bars;
+      pendingName = last.name;
+      pendingMarks = last.marks || [];
+      pendingNote = last.note || "";
+    }
+    render();
+  }
+
+  function validMap(){
+    var invalid = sectionsEl.querySelector("input:invalid");
+    if (invalid){ invalid.reportValidity(); return false; }
+    return true;
+  }
+
   function flash(){
     barNum.classList.add("hit");
     setTimeout(function(){ barNum.classList.remove("hit"); }, 90);
@@ -587,31 +613,32 @@
     var el = document.createElement("div");
     el.className = "sect" + (current ? " current" : "");
 
-    var num;
-    if (current){
-      num = document.createElement("span");
-      num.className = "n";
-      num.innerHTML = s.bars + '<small>bars</small>';
-    } else {
-      num = document.createElement("span");
-      num.className = "n";
-      var bin = document.createElement("input");
-      bin.className = "barin";
-      bin.value = s.bars;
-      bin.inputMode = "numeric";
-      bin.setAttribute("aria-label", "Bars in this section");
-      bin.addEventListener("input", function(){
-        var v = parseInt(bin.value, 10);
-        sections[idx].bars = isNaN(v) ? 0 : Math.max(0, v);
-        totalEl.textContent = totalBars();
-        renderSummary();
-      });
-      bin.addEventListener("keydown", function(e){ e.stopPropagation(); });
-      num.appendChild(bin);
-      var lbl = document.createElement("small");
-      lbl.textContent = "bars";
-      num.appendChild(lbl);
-    }
+    var position = current ? sections.length : idx;
+    var num = document.createElement("span");
+    num.className = "n";
+    var bin = document.createElement("input");
+    bin.className = "barin";
+    bin.value = s.bars;
+    bin.inputMode = "numeric";
+    bin.type = "number";
+    bin.min = current ? "1" : "0";
+    bin.step = "1";
+    bin.required = true;
+    bin.setAttribute("aria-label", "Bars in this section");
+    bin.addEventListener("input", function(){
+      var v = Number(bin.value);
+      if (!Number.isSafeInteger(v) || v < (current ? 1 : 0)) return;
+      if (current) bars = v;
+      else sections[idx].bars = v;
+      barNum.textContent = bars;
+      totalEl.textContent = totalBars();
+      renderSummary();
+    });
+    bin.addEventListener("keydown", function(e){ e.stopPropagation(); });
+    num.appendChild(bin);
+    var lbl = document.createElement("small");
+    lbl.textContent = "bars";
+    num.appendChild(lbl);
 
     var inp = document.createElement("input");
     inp.value = s.name || "";
@@ -627,27 +654,8 @@
     el.appendChild(num);
     el.appendChild(inp);
 
-    var marks = s.marks || [];
     var note = document.createElement("div");
     note.className = "sectnote";
-
-    if (marks.length){
-      var chips = document.createElement("div");
-      chips.className = "marks";
-      marks.forEach(function(m, mi){
-        var c = document.createElement("button");
-        c.className = "mark";
-        c.textContent = "fill bar " + m;
-        c.title = "Click to remove";
-        c.addEventListener("click", function(){
-          var arr = (idx === -1) ? pendingMarks : sections[idx].marks;
-          arr.splice(mi, 1);
-          render();
-        });
-        chips.appendChild(c);
-      });
-      note.appendChild(chips);
-    }
 
     var ninp = document.createElement("input");
     ninp.value = s.note || "";
@@ -661,12 +669,67 @@
     note.appendChild(ninp);
 
     el.appendChild(note);
+
+    var fills = document.createElement("label");
+    fills.className = "sectfills";
+    fills.appendChild(document.createTextNode("Fill bars"));
+    var finp = document.createElement("input");
+    finp.value = (s.marks || []).join(", ");
+    finp.placeholder = "e.g. 4, 8";
+    finp.addEventListener("input", function(){
+      var value = finp.value.trim();
+      var marks = value ? value.split(",").map(function(n){ return Number(n.trim()); }) : [];
+      var valid = (!value || /^\d+(\s*,\s*\d+)*$/.test(value)) &&
+        marks.every(function(n){ return Number.isSafeInteger(n) && n > 0; });
+      finp.setCustomValidity(valid ? "" : "Use positive whole bar numbers separated by commas.");
+      if (!valid) return;
+      marks = marks.filter(function(n, i){ return marks.indexOf(n) === i; }).sort(function(a,b){ return a-b; });
+      if (current) pendingMarks = marks;
+      else sections[idx].marks = marks;
+    });
+    finp.addEventListener("change", function(){ finp.reportValidity(); });
+    finp.addEventListener("keydown", function(e){ e.stopPropagation(); });
+    fills.appendChild(finp);
+    el.appendChild(fills);
+
+    var tools = document.createElement("div");
+    tools.className = "secttools";
+    function control(label, action, disabled){
+      var button = document.createElement("button");
+      button.className = "textbtn" + (label === "Remove" ? " warn" : "");
+      button.textContent = label;
+      button.disabled = !!disabled;
+      button.addEventListener("click", function(){ editMap(action); });
+      tools.appendChild(button);
+    }
+    control("Add after", function(all){
+      all.splice(position + 1, 0, {name:"", bars:1, marks:[], note:""});
+    });
+    control("Move up", function(all){
+      var previous = all[position - 1];
+      all[position - 1] = all[position];
+      all[position] = previous;
+    }, position === 0);
+    control("Move down", function(all){
+      var next = all[position + 1];
+      all[position + 1] = all[position];
+      all[position] = next;
+    }, position === sections.length + (bars ? 1 : 0) - 1);
+    control("Merge with previous", function(all){
+      var previous = all[position - 1], section = all[position];
+      previous.marks = (previous.marks || []).concat((section.marks || []).map(function(n){ return n + previous.bars; }));
+      previous.bars += section.bars;
+      previous.name = previous.name || section.name;
+      previous.note = [previous.note, section.note].filter(Boolean).join("; ");
+      all.splice(position, 1);
+    }, position === 0);
+    control("Remove", function(all){ all.splice(position, 1); });
+    el.appendChild(tools);
     return el;
   }
 
   function formSentence(){
-    var all = sections.slice();
-    if (bars) all.push({name:pendingName, bars:bars});
+    var all = mapSections();
     if (!all.length) return "";
     return all.map(function(s){
       return s.bars + (s.name ? " " + s.name.trim().toLowerCase() : "");
@@ -675,9 +738,8 @@
 
   function renderSummary(){
     var s = formSentence();
-    summaryEl.innerHTML = s
-      ? s.charAt(0).toUpperCase() + s.slice(1) + "."
-      : "<em>Your form sentence appears here once you've marked a section.</em>";
+    if (s) summaryEl.textContent = s.charAt(0).toUpperCase() + s.slice(1) + ".";
+    else summaryEl.innerHTML = "<em>Your form sentence appears here once you've marked a section.</em>";
   }
 
   function asText(){
@@ -686,8 +748,7 @@
     var t = tempo();
     if (t) lines.push("about " + t + " bpm");
     lines.push("");
-    var all = sections.slice();
-    if (bars) all.push({name:pendingName, bars:bars, marks:pendingMarks, note:pendingNote});
+    var all = mapSections();
     all.forEach(function(s){
       var line = (s.name ? s.name.trim() : "?") + ": " + s.bars + " bars";
       var extra = [];
@@ -753,6 +814,7 @@
 
   // ---------- keys ----------
   document.addEventListener("keydown", function(e){
+    if (e.target.closest("button") && (e.code === "Space" || e.key === "Enter")) return;
     if (e.target === songName && e.key !== "Escape") return;
     if (e.target.tagName === "INPUT" && e.key !== "Escape") return;
 
@@ -785,6 +847,7 @@
 
   function resetCount(){
     bars = 0; beatIdx = 0; sections = []; tapTimes = [];
+    lastEnter = -1e9;
     pendingName = ""; pendingMarks = []; pendingNote = "";
     render();
   }
@@ -803,6 +866,9 @@
   }
   $("modeBar").addEventListener("click", function(){ setMode(false); this.blur(); });
   $("modeBeat").addEventListener("click", function(){ setMode(true); this.blur(); });
+  $("addBtn").addEventListener("click", function(){
+    editMap(function(all){ all.push({name:"", bars:1, marks:[], note:""}); });
+  });
 
   // ---------- youtube + count-in ----------
   var ytUrl = $("ytUrl"), ytBox = $("ytBox"), countRow = $("countRow"),
@@ -1028,8 +1094,8 @@
   }
 
   $("saveBtn").addEventListener("click", async function(){
-    var all = sections.slice();
-    if (bars) all.push({name:pendingName, bars:bars, marks:pendingMarks, note:pendingNote});
+    if (!validMap()) return;
+    var all = mapSections();
     if (!all.length){ this.textContent = "Count something first"; var b=this;
       setTimeout(function(){ b.textContent = "Save this song"; }, 1400); return; }
 
@@ -1049,6 +1115,7 @@
   });
 
   $("copyBtn").addEventListener("click", function(){
+    if (!validMap()) return;
     var btn = this;
     var text = asText();
     var done = function(msg){
@@ -1066,8 +1133,7 @@
 
   // ---------- print sheet ----------
   function buildSheet(){
-    var all = sections.slice();
-    if (bars) all.push({name:pendingName, bars:bars, marks:pendingMarks, note:pendingNote});
+    var all = mapSections();
     var sheet = $("sheet");
     sheet.innerHTML = "";
 
@@ -1122,6 +1188,7 @@
   }
 
   $("printBtn").addEventListener("click", function(){
+    if (!validMap()) return;
     if (!sections.length && !bars){
       var b = this;
       b.textContent = "Count something first";
